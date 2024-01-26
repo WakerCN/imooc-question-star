@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "workspace",
+      "path": "."
+    },
+    {
+      "name": "study-demo",
+      "path": "./study-demo"
+    }
+  ],
+  "settings": {
+    // "editor.codeActionsOnSave": {
+    //   "source.fixAll.eslint": "never"
+    // }
+  }
+}
