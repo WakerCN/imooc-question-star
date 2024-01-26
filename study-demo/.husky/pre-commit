@@ -1,1 +1,4 @@
-npm test
+cd study-demo
+
+npm run format
+npm run lint
