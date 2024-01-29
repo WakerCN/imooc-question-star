@@ -1,3 +1,5 @@
+echo "[husky] pre-commit hooks"
+
 cd study-demo
 
 npm run format

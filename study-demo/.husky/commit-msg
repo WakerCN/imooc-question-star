@@ -1,0 +1,5 @@
+echo "[husky] commit-msg hooks"
+
+cd study-demo
+
+npx --no -- commitlint --edit \
