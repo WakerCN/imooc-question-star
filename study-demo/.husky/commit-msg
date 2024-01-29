@@ -1,4 +1,12 @@
-echo "[husky] commit-msg hooks"
+# 定义颜色变量
+RED='\e[1;31m' # 红
+GREEN='\e[1;32m' # 绿
+YELLOW='\e[1;33m' # 黄
+BLUE='\e[1;34m' # 蓝
+PINK='\e[1;35m' # 粉红
+RES='\e[0m' # 清除颜色
+
+echo -e "${BLUE}[husky] commit-msg hooks${RES}"
 
 cd study-demo
 
