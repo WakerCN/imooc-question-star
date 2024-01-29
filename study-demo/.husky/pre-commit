@@ -2,5 +2,8 @@ echo "[husky] pre-commit hooks"
 
 cd study-demo
 
+echo -e "\n[pre-commit] 开始格式化文件"
 npm run format
+
+echo -e "\n[pre-commit] 开始eslint检查"
 npm run lint
