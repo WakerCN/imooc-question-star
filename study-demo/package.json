@@ -11,16 +11,24 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,less,sass,scss,json}'",
     "prepare": "cd .. && husky study-demo/.husky"
   },
+  "config": {
+    "commitizen": {
+      "path": "study-demo/node_modules/cz-git"
+    }
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "cz-git": "^1.8.0",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
