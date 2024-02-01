@@ -1,0 +1,19 @@
+# 定义颜色变量
+RED='\e[1;31m' # 红
+GREEN='\e[1;32m' # 绿
+YELLOW='\e[1;33m' # 黄
+BLUE='\e[1;34m' # 蓝
+PINK='\e[1;35m' # 粉红
+RES='\e[0m' # 清除颜色
+
+echo -e "${BLUE}[husky] pre-commit hooks${RES}"
+
+cd question-fe
+
+echo -e "${BLUE}[pre-commit] 开始格式化文件${RES}"
+npm run format
+
+echo -e "\n${BLUE}[pre-commit] 开始eslint检查${RES}"
+npm run lint
+
+git add .

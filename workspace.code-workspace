@@ -7,6 +7,10 @@
     {
       "name": "study-demo",
       "path": "./study-demo"
+    },
+    {
+      "name": "question-fe",
+      "path": "./question-fe"
     }
   ],
   "settings": {
