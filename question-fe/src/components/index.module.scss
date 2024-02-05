@@ -1,0 +1,52 @@
+.question-list {
+  width: 800px;
+  height: 80%;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  @include box-shadow();
+  @include forsted-glass();
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    height: 30px;
+
+    .title {
+      display: inline-block;
+      width: max-content;
+      margin: 0;
+    }
+
+    .input {
+      width: 240px;
+    }
+  }
+
+  .list {
+    // max-height: calc(100% - 30px);
+    overflow: auto;
+  }
+}
+
+.question-card {
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+
+  .divider {
+    margin: 5px 0;
+  }
+
+  .title {
+    margin: 0;
+  }
+  .answer-count {
+    display: inline-block;
+    text-align: right;
+    min-width: 30px;
+  }
+}

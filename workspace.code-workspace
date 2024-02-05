@@ -14,7 +14,8 @@
     }
   ],
   "settings": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "typescript.tsdk": "question-fe\\node_modules\\typescript\\lib"
     // "editor.codeActionsOnSave": {
     //   "source.fixAll.eslint": "never"
     // }

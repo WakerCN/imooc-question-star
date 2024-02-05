@@ -24,9 +24,9 @@ const config = {
         '📦️ build',
         '🎡 ci',
         '⏪️ revert',
-        '🔨 chore',
-      ],
-    ],
+        '🔨 chore'
+      ]
+    ]
   },
   prompt: {
     alias: {
@@ -34,11 +34,11 @@ const config = {
       r: 'docs: update README',
       s: 'style: update code format',
       b: 'build: bump dependencies',
-      c: 'chore: update config',
+      c: 'chore: update config'
     },
     customScopesAlign: 'top',
     defaultScope: ['custom'],
-    scopes: [],
+    scopes: ['list'],
     allowCustomScopes: true,
     allowEmptyScopes: true,
     allowEmptyIssuePrefixs: true,
@@ -49,64 +49,64 @@ const config = {
       customScope: '请输入自定义的提交范围 :',
       subject: '填写简短精炼的变更描述 :\n',
       body: '填写更加详细的变更描述（可选）。使用 "|" 换行 :\n',
-      confirmCommit: '是否提交或修改commit ?',
+      confirmCommit: '是否提交或修改commit ?'
     },
     types: [
       {
         value: 'feat',
         name: 'feat:      ✨ 新增功能 | A new feature',
-        emoji: '✨',
+        emoji: '✨'
       },
       {
         value: 'fix',
         name: 'fix:       🐞 修复缺陷 | A bug fix',
-        emoji: '🐞',
+        emoji: '🐞'
       },
       {
         value: 'docs',
         name: 'docs:      📝 文档更新 | Documentation only changes',
-        emoji: '📝',
+        emoji: '📝'
       },
       {
         value: 'style',
         name: 'style:     💄 代码格式 | Changes that do not affect the meaning of the code',
-        emoji: '💄',
+        emoji: '💄'
       },
       {
         value: 'refactor',
         name: 'refactor:  🦄 代码重构 | A code change that neither fixes a bug nor adds a feature',
-        emoji: '🦄',
+        emoji: '🦄'
       },
       {
         value: 'perf',
         name: 'perf:      ⚡️ 性能提升 | A code change that improves performance',
-        emoji: '⚡️',
+        emoji: '⚡️'
       },
       {
         value: 'test',
         name: 'test:      🧪 测试相关 | Adding missing tests or correcting existing tests',
-        emoji: '🧪',
+        emoji: '🧪'
       },
       {
         value: 'build',
         name: 'build:     📦️ 构建相关 | Changes that affect the build system or external dependencies',
-        emoji: '📦️',
+        emoji: '📦️'
       },
       {
         value: 'ci',
         name: 'ci:        🎡 持续集成 | Changes to our CI configuration files and scripts',
-        emoji: '🎡',
+        emoji: '🎡'
       },
       {
         value: 'revert',
         name: 'revert:    ⏪️ 回退代码 | Revert to a commit',
-        emoji: '⏪️',
+        emoji: '⏪️'
       },
       {
         value: 'chore',
         name: 'chore:     🔨 其他修改 | Other changes that do not modify src or test files',
-        emoji: '🔨',
-      },
+        emoji: '🔨'
+      }
     ],
     useEmoji: true,
     emojiAlign: 'left',
@@ -120,8 +120,8 @@ const config = {
     scopeOverrides: undefined,
     defaultBody: '',
     defaultIssues: '',
-    defaultSubject: '',
-  },
+    defaultSubject: ''
+  }
 };
 
 export default config;
