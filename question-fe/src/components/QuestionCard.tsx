@@ -1,3 +1,4 @@
+import { ROUTE_PATH } from '@/routers';
 import {
   CopyOutlined,
   DeleteOutlined,
@@ -5,8 +6,18 @@ import {
   LineChartOutlined,
   StarOutlined
 } from '@ant-design/icons';
-import { Button, Divider, Flex, Space, Tag, Tooltip, Typography } from 'antd';
+import {
+  Button,
+  Divider,
+  Flex,
+  Rate,
+  Space,
+  Tag,
+  Tooltip,
+  Typography
+} from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 
 export interface QuestionInfo {
@@ -24,12 +35,36 @@ interface QuestionCardProps {
 
 export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
   const { info } = props;
-  const { title, answerCount, createAt, isPublished } = info;
+  const { title, answerCount, createAt, isPublished, _id, isStar } = info;
+
+  const naviagte = useNavigate();
+
+  const handleEdit = () => {
+    naviagte(`/question/edit/${info._id}`);
+  };
+
+  const handleTitleClick = () => {
+    if (isPublished) {
+      naviagte(`${ROUTE_PATH.ANALYSIS}${_id}`);
+    } else {
+      naviagte(`${ROUTE_PATH.EDIT}${_id}`);
+    }
+  };
 
   return (
     <div className={styles['question-card']}>
       <Flex justify="space-between">
-        <h3 className={styles['title']}>{title}</h3>
+        <div className={styles['title-wrap']}>
+          <Rate
+            tooltips={['收藏']}
+            className={styles['star']}
+            count={1}
+            value={isStar ? 1 : 0}
+          />
+          <span className={styles['title']} onClick={handleTitleClick}>
+            {title}
+          </span>
+        </div>
         <Space>
           <span>{createAt}</span>
           {isPublished ? (
@@ -42,7 +77,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
       <Divider className={styles['divider']} />
       <Flex justify="space-between">
         <Space>
-          <Button type="text" icon={<EditOutlined />}>
+          <Button type="text" icon={<EditOutlined />} onClick={handleEdit}>
             编辑问卷
           </Button>
           <Button type="text" icon={<LineChartOutlined />} disabled>

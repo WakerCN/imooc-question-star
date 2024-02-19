@@ -1,12 +1,7 @@
 .question-list {
-  width: 800px;
-  height: 80%;
-  padding: 20px;
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  @include box-shadow();
-  @include forsted-glass();
+  @include main-card();
 
   .search-header {
     display: flex;
@@ -19,14 +14,9 @@
       width: max-content;
       margin: 0;
     }
-
-    .input {
-      width: 240px;
-    }
   }
 
   .list {
-    // max-height: calc(100% - 30px);
     overflow: auto;
   }
 }
@@ -41,9 +31,26 @@
     margin: 5px 0;
   }
 
-  .title {
+  .title-wrap {
     margin: 0;
+    @include flex-center(flex-start);
+
+    .star {
+      margin: 0 8px 0 0;
+    }
+
+    .title {
+      font-size: 20px;
+      @include antd-transition();
+      cursor: pointer;
+
+      &:hover {
+        color: var(--ant-color-primary);
+        text-decoration: underline;
+      }
+    }
   }
+
   .answer-count {
     display: inline-block;
     text-align: right;

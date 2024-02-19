@@ -1,0 +1,20 @@
+$header-h: 60px;
+
+.quesion-layout {
+  height: 100vh;
+  width: 100vw;
+  background: url('../../assets/image/appBg.svg');
+
+  .header {
+    height: $header-h;
+    background: transparent;
+    padding: 10px 20px;
+    @include forsted-glass();
+    @include box-shadow();
+    @include flex-center(space-between);
+
+    .back-btn {
+      background: rgba(0, 0, 0, 0.06);
+    }
+  }
+}

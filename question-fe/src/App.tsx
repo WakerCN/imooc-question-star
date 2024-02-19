@@ -1,14 +1,10 @@
 import '@/assets/styles/index.scss';
-import { QuestionList } from './components/QuestionList';
+// import { QuestionList } from './components/QuestionList';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routers';
 
 function App() {
-  return (
-    <>
-      <div className="app">
-        <QuestionList />
-      </div>
-    </>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

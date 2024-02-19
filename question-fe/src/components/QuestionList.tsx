@@ -1,7 +1,8 @@
 import { MockData } from '@/mocks/question-list';
-import { SearchOutlined } from '@ant-design/icons';
-import { Col, Empty, Input, Row } from 'antd';
+import { Col, Empty, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ListSearch } from './ListSearch';
 import { QuestionCard, QuestionInfo } from './QuestionCard';
 import styles from './index.module.scss';
 
@@ -11,28 +12,22 @@ export const QuestionList: React.FC<QuestionListProps> = () => {
   const [questionList, setQuestionList] = useState<QuestionInfo[]>(
     MockData.questionList
   );
-  const [keywords, setKeywords] = useState<string>('');
+
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     setQuestionList(
       MockData.questionList.filter((question) =>
-        question.title.includes(keywords)
+        question.title.includes(searchParams.get('keywords') || '')
       )
     );
-  }, [keywords]);
+  }, [searchParams]);
 
   return (
     <div className={styles['question-list']}>
       <section className={styles['search-header']}>
         <h2 className={styles['title']}>问卷列表</h2>
-        <Input
-          value={keywords}
-          onChange={(e) => setKeywords(e.target.value)}
-          size="small"
-          className={styles['input']}
-          placeholder="请输入关键字"
-          prefix={<SearchOutlined />}
-        />
+        <ListSearch />
       </section>
       <Row className={styles['list']} gutter={[10, 10]}>
         {questionList.length ? (

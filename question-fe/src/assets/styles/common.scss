@@ -40,3 +40,27 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@mixin flex-center($justify: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
+@mixin antd-transition {
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@mixin main-card {
+  width: 100%;
+  height: 100%;
+
+  padding: 20px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  @include box-shadow();
+  @include forsted-glass();
+}

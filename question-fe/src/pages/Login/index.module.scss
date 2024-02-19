@@ -1,0 +1,15 @@
+/** 浮窗界面 */
+.main-wrap {
+  height: 100%;
+  width: 100%;
+  @include flex-center();
+
+  .login-box {
+    width: 400px;
+    padding: 20px;
+    border-radius: 20px;
+    @include forsted-glass();
+    @include box-shadow();
+    background: rgba($color: #fff, $alpha: 0.7);
+  }
+}

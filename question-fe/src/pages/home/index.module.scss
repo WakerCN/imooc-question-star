@@ -1,0 +1,9 @@
+.home-page {
+  height: 100%;
+  @include flex-center();
+
+  .start {
+    font-size: 32px;
+    height: 70px;
+  }
+}

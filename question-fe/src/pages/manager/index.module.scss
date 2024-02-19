@@ -1,0 +1,30 @@
+.question-manager {
+  height: 100%;
+  @include antd-transition();
+}
+
+.recycle-bin,
+.star-question {
+  @include main-card();
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    height: 30px;
+
+    .title {
+      display: inline-block;
+      width: max-content;
+      margin: 0;
+    }
+  }
+
+  .operate-btns {
+    margin-bottom: 10px;
+  }
+
+  .list {
+    overflow: auto;
+  }
+}

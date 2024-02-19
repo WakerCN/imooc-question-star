@@ -1,0 +1,28 @@
+$header-h: 60px;
+$footer-h: 60px;
+
+.main-layout {
+  height: 100%;
+  background: url('../../assets/image/appBg.svg');
+
+  .header {
+    height: $header-h;
+    padding: 0 10px;
+    background: transparent;
+    @include forsted-glass();
+    @include box-shadow();
+
+    .icon {
+      font-size: 32px;
+    }
+  }
+
+  .main {
+    height: calc(100% - $header-h - $footer-h);
+  }
+
+  .footer {
+    height: $footer-h;
+    @include flex-center();
+  }
+}
