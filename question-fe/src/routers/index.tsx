@@ -2,22 +2,28 @@ import { NotFound } from '@/components/404';
 import MainLayout from '@/layouts/MainLayout';
 import { ManagerLayout } from '@/layouts/ManagerLayout';
 import { QuestionLayout } from '@/layouts/QuestionLayout';
+import { Home } from '@/pages/home';
 import { Login } from '@/pages/Login/Login';
 import { Register } from '@/pages/Login/Register';
-import { Home } from '@/pages/home';
 import { MyQuestions } from '@/pages/manager/MyQuestions';
 import { RecycleBin } from '@/pages/manager/RecycleBin';
 import { StarQuestions } from '@/pages/manager/StarQuestions';
-import { QuestionAnalysis } from '@/pages/question/QuestionAnalysis';
 import { QuestionEditor } from '@/pages/question/editor';
-import { createBrowserRouter } from 'react-router-dom';
+import { QuestionAnalysis } from '@/pages/question/QuestionAnalysis';
+import { TreeTools } from '@/utils/tree';
+import _ from 'lodash';
+import { createRef } from 'react';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
-export const router = createBrowserRouter([
+export const routesConfig: RouteObject[] = [
   {
     path: '/',
     element: <MainLayout />,
     children: [
-      { path: '/', element: <Home /> },
+      {
+        path: '/',
+        element: <Home />
+      },
       {
         path: 'login',
         element: <Login />
@@ -74,12 +80,17 @@ export const router = createBrowserRouter([
       </h1>
     )
   }
-]);
+];
 
-// router.subscribe((state) => {
-//   const { location } = state;
-//   document.title = `慧簿 | ${ROUTE_NAME[location.pathname]}`;
-// });
+const routesWithNodeRef = TreeTools.processTree(
+  _.cloneDeep(routesConfig),
+  (route) => ({
+    ...route,
+    nodeRef: createRef()
+  })
+);
+
+export const router = createBrowserRouter(routesWithNodeRef);
 
 export const ROUTE_PATH = {
   /** 首页 */

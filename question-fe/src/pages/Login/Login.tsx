@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { passwordRules, usernameRules } from './rules';
 import { clearLoginInfo, getLoginInfo, rememberLoginInfo } from './storage';
+
 interface Props {}
 
 export interface LoginForm {

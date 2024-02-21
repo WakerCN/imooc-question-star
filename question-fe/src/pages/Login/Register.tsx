@@ -1,12 +1,12 @@
 import { baseFormLayouts } from '@/assets/styles';
+import { useTitle } from '@/hooks/common';
+import { ROUTE_PATH } from '@/routers';
 import { GithubOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Space, Typography } from 'antd';
 import React from 'react';
-import styles from './index.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE_PATH } from '@/routers';
+import styles from './index.module.scss';
 import { passwordRules, usernameRules } from './rules';
-import { useTitle } from '@/hooks/common';
 
 interface Props {}
 

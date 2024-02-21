@@ -11,6 +11,10 @@
     {
       "name": "question-fe",
       "path": "./question-fe"
+    },
+    {
+      "name": "question-be-mock",
+      "path": "./question-be-mock"
     }
   ],
   "settings": {

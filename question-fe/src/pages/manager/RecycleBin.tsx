@@ -1,9 +1,9 @@
+import { ListSearch } from '@/components/ListSearch';
+import { QuestionInfo } from '@/components/QuestionCard';
+import { MockData } from '@/mocks/question-list';
+import { Button, Space, Table, TableColumnsType, TableProps, Tag } from 'antd';
 import React, { useState } from 'react';
 import styles from './index.module.scss';
-import { ListSearch } from '@/components/ListSearch';
-import { Button, Space, Table, TableColumnsType, TableProps, Tag } from 'antd';
-import { MockData } from '@/mocks/question-list';
-import { QuestionInfo } from '@/components/QuestionCard';
 
 interface Props {}
 
@@ -56,8 +56,12 @@ export const RecycleBin: React.FC<Props> = () => {
         <ListSearch />
       </section>
       <Space className={styles['operate-btns']}>
-        <Button disabled={selectedRowKeys.length === 0}>恢复</Button>
-        <Button disabled={selectedRowKeys.length === 0}>彻底删除</Button>
+        <Button type={'primary'} disabled={selectedRowKeys.length === 0}>
+          恢复
+        </Button>
+        <Button danger disabled={selectedRowKeys.length === 0}>
+          彻底删除
+        </Button>
       </Space>
       <div className={styles['list']}>
         <Table {...tableProps} />

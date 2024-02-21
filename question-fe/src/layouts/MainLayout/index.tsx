@@ -1,11 +1,15 @@
-import { Button, Flex, Space } from 'antd';
-import { Outlet, useNavigate } from 'react-router-dom';
-import styles from './index.module.scss';
 import { Logo } from '@/components/Logo';
+import { useTransitionRef } from '@/hooks/transition';
 import { ROUTE_PATH } from '@/routers';
+import { Button, Flex, Space } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import styles from './index.module.scss';
 
 export default function MainLayout() {
   const navigate = useNavigate();
+
+  const { nodeRef, currentOutlet, location } = useTransitionRef();
 
   const handleToAuthor = () => {
     window.open('https://github.com/WakerCN');
@@ -18,6 +22,13 @@ export default function MainLayout() {
   const handleRegister = () => {
     navigate(ROUTE_PATH.RESGISTER);
   };
+
+  const transitionRoute = [
+    ROUTE_PATH.HOME,
+    ROUTE_PATH.LOGIN,
+    ROUTE_PATH.RESGISTER,
+    ROUTE_PATH.MANAGER
+  ];
 
   return (
     <section className={styles['main-layout']}>
@@ -33,7 +44,24 @@ export default function MainLayout() {
         </Space>
       </Flex>
       <main className={styles['main']}>
-        <Outlet />
+        {transitionRoute.includes(location.pathname) ? (
+          <SwitchTransition>
+            <CSSTransition
+              ref={nodeRef}
+              key={location.pathname}
+              timeout={500}
+              classNames={'fade'}
+            >
+              {() => (
+                <div ref={nodeRef} className="router-wrap">
+                  {currentOutlet}
+                </div>
+              )}
+            </CSSTransition>
+          </SwitchTransition>
+        ) : (
+          <div className="router-wrap">{currentOutlet}</div>
+        )}
       </main>
       <footer className={styles['footer']}>
         <span style={{ marginRight: 100 }}>✨慧簿 ©2024 - present</span>

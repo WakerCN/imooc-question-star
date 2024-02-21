@@ -1,9 +1,10 @@
-import React from 'react';
-import styles from './index.module.scss';
-import { Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { ROUTE_PATH } from '@/routers';
 import { useTitle } from '@/hooks/common';
+import { ROUTE_PATH } from '@/routers';
+import { Button } from 'antd';
+import confetti from 'canvas-confetti';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './index.module.scss';
 
 interface Props {}
 
@@ -12,7 +13,8 @@ export const Home: React.FC<Props> = () => {
 
   const naviagte = useNavigate();
 
-  const handleStart = () => {
+  const handleStart = async () => {
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     naviagte(ROUTE_PATH.MANAGER);
   };
 

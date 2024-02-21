@@ -19,6 +19,7 @@ $footer-h: 60px;
 
   .main {
     height: calc(100% - $header-h - $footer-h);
+    overflow: hidden;
   }
 
   .footer {
