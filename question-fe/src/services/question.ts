@@ -2,6 +2,8 @@ import axiosInstance, { RequestData } from '.';
 
 export interface ListParams {
   keyword?: string;
+  page?: number;
+  pageSize?: number;
   isStar?: boolean;
   isDeleted?: boolean;
 }

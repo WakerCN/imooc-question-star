@@ -54,11 +54,14 @@ module.exports = [
     response(ctx) {
       const isDeleted = ctx.url.indexOf("isDeleted=true") >= 0;
       const isStar = ctx.url.indexOf("isStar=true") >= 0 ? true : undefined;
+      const params = ctx.query || {};
+      const pageSize = parseInt(params.pageSize) || 10;
+
       return {
         errno: 0,
         msg: "ok",
         data: {
-          list: getQuestionList({ isDeleted, isStar }),
+          list: getQuestionList({ len: pageSize, isDeleted, isStar }),
           total: 100
         }
       };

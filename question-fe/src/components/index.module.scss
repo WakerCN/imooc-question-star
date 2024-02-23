@@ -19,6 +19,13 @@
   .list {
     height: calc(100% - 50px);
     overflow: auto;
+
+    .load-more-wrap {
+      height: 40px;
+      width: 100%;
+      text-align: center;
+      @include flex-center();
+    }
   }
 }
 

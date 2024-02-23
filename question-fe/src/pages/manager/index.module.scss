@@ -24,7 +24,14 @@
     margin-bottom: 10px;
   }
 
+  /* 表格父容器
+  =========================================== */
   .list {
     overflow: auto;
+    height: calc(100% - 50px - 42px);
+
+    .table {
+      height: 100%;
+    }
   }
 }

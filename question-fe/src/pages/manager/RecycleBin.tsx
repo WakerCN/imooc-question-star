@@ -1,17 +1,41 @@
 import { ListSearch } from '@/components/ListSearch';
 import { QuestionInfo } from '@/components/QuestionCard';
 import { useQuestionList } from '@/hooks/question';
+import { useSize } from 'ahooks';
 import { Button, Space, Table, TableColumnsType, TableProps, Tag } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { SEARCH_KEY } from '@/constants';
 
 interface Props {}
 
 export const RecycleBin: React.FC<Props> = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const [page, setPage] = useState<number>(
+    parseInt(searchParams.get(SEARCH_KEY.PAGE) || '') || 1
+  );
+  const [pageSize, setPageSize] = useState<number>(
+    parseInt(searchParams.get(SEARCH_KEY.SIZE) || '') || 10
+  );
+
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+
+  useEffect(() => {
+    const page = parseInt(searchParams.get(SEARCH_KEY.PAGE) || '') || 1;
+    setPage(page);
+    const pageSize = parseInt(searchParams.get(SEARCH_KEY.SIZE) || '') || 10;
+    setPageSize(pageSize);
+  }, [searchParams]);
 
   const { data = {}, loading } = useQuestionList({ isDeleted: true });
   const { list: questionList = [], total = 0 } = data;
+
+  const ref = useRef<HTMLDivElement>(null);
+  const tableSize = useSize(ref);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -42,6 +66,11 @@ export const RecycleBin: React.FC<Props> = () => {
     }
   ];
 
+  const paginationHeight = 64;
+  const tableHeaderHeight = 55;
+  const scrollY =
+    (tableSize?.height || 1000) - paginationHeight - tableHeaderHeight;
+
   const tableProps: TableProps<QuestionInfo> = {
     dataSource: questionList,
     columns,
@@ -52,8 +81,16 @@ export const RecycleBin: React.FC<Props> = () => {
       onChange: onSelectChange
     },
     pagination: {
-      total
-    }
+      total,
+      current: page,
+      pageSize,
+      onChange: (page, pageSize) => {
+        searchParams.set(SEARCH_KEY.PAGE, page.toString());
+        searchParams.set(SEARCH_KEY.SIZE, pageSize.toString());
+        navigate({ pathname, search: searchParams.toString() });
+      }
+    },
+    scroll: scrollY < 56 * pageSize ? { y: scrollY } : undefined
   };
 
   return (
@@ -70,8 +107,8 @@ export const RecycleBin: React.FC<Props> = () => {
           彻底删除
         </Button>
       </Space>
-      <div className={styles['list']}>
-        <Table {...tableProps} />
+      <div className={styles['list']} ref={ref}>
+        <Table className={styles['table']} {...tableProps} />
       </div>
     </div>
   );
