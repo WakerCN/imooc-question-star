@@ -66,5 +66,17 @@ module.exports = [
         }
       };
     }
+  },
+  /* 更新 问卷详情
+  =========================================== */
+  {
+    url: "/api/question/:id",
+    method: "patch",
+    response() {
+      return {
+        errno: 0,
+        msg: "修改成功"
+      };
+    }
   }
 ];

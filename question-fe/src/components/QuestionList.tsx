@@ -2,7 +2,7 @@ import { PAGINATION, SEARCH_KEY } from '@/constants';
 import { QuestionService } from '@/services/question';
 import { useDebounceFn, useRequest } from 'ahooks';
 import { Col, Empty, Row, Space, Spin } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ListSearch } from './ListSearch';
 import { QuestionCard, QuestionInfo } from './QuestionCard';
@@ -90,16 +90,17 @@ export const QuestionList: React.FC<QuestionListProps> = (props) => {
     setList([]);
   }, [keyword]);
 
-  const loadElement = () => {
-    if (loading) {
+  const loadElement = useMemo(() => {
+    if (!started || loading) {
       return (
         <div className={styles['load-more-wrap']} ref={loadRef}>
           <Space>
-            <Spin /> 加载更多...
+            <Spin /> 加载中...
           </Space>
         </div>
       );
     }
+
     if (hasMoreData)
       return (
         <div className={styles['load-more-wrap']} ref={loadRef}>
@@ -114,7 +115,7 @@ export const QuestionList: React.FC<QuestionListProps> = (props) => {
         </div>
       );
     }
-  };
+  }, [started, loading, hasMoreData]);
 
   return (
     <div className={styles['question-list']}>
@@ -138,7 +139,7 @@ export const QuestionList: React.FC<QuestionListProps> = (props) => {
                 description="暂无问卷"
               />
             )}
-        {loadElement()}
+        {loadElement}
       </Row>
     </div>
   );

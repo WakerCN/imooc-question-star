@@ -1,3 +1,4 @@
+import { QuestionInfo } from '@/components/QuestionCard';
 import axiosInstance, { RequestData } from '.';
 
 export interface ListParams {
@@ -35,8 +36,18 @@ const getQuestionList = async (
   return data;
 };
 
+const updateQuestion = async (
+  id: string,
+  params: Partial<QuestionInfo>
+): Promise<RequestData> => {
+  const url = `/api/question/${id}`;
+  const data = (await axiosInstance.patch(url, params)) as RequestData;
+  return data;
+};
+
 export const QuestionService = {
   getQuestion,
   createQuestion,
-  getQuestionList
+  getQuestionList,
+  updateQuestion
 };

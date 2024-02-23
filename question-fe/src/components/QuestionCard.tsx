@@ -14,11 +14,14 @@ import {
   Space,
   Tag,
   Tooltip,
-  Typography
+  Typography,
+  message
 } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
+import { useRequest } from 'ahooks';
+import { QuestionService } from '@/services/question';
 
 export interface QuestionInfo {
   _id: string;
@@ -40,6 +43,21 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
 
   const naviagte = useNavigate();
 
+  const [starState, setStarState] = useState<boolean>(isStar);
+
+  const { run: changeStar, loading: starLoading } = useRequest(
+    async () => {
+      return await QuestionService.updateQuestion(_id, { isStar: !starState });
+    },
+    {
+      manual: true,
+      onSuccess: () => {
+        setStarState((prev) => !prev);
+        message.success(starState ? '取消收藏' : '收藏成功');
+      }
+    }
+  );
+
   const handleEdit = () => {
     naviagte(`/question/edit/${info._id}`);
   };
@@ -60,7 +78,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
             tooltips={['收藏']}
             className={styles['star']}
             count={1}
-            value={isStar ? 1 : 0}
+            value={starState ? 1 : 0}
+            onChange={changeStar}
+            disabled={starLoading}
           />
           <span className={styles['title']} onClick={handleTitleClick}>
             {title}
@@ -78,10 +98,20 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
       <Divider className={styles['divider']} />
       <Flex justify="space-between">
         <Space>
-          <Button type="text" icon={<EditOutlined />} onClick={handleEdit}>
+          <Button
+            className={styles['opt-btn']}
+            type="text"
+            icon={<EditOutlined />}
+            onClick={handleEdit}
+          >
             编辑问卷
           </Button>
-          <Button type="text" icon={<LineChartOutlined />} disabled>
+          <Button
+            className={styles['opt-btn']}
+            type="text"
+            icon={<LineChartOutlined />}
+            disabled
+          >
             数据统计
           </Button>
           <Typography.Text>
@@ -89,14 +119,34 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
           </Typography.Text>
         </Space>
         <Space>
-          <Tooltip title="标星">
-            <Button type="text" icon={<StarOutlined />} />
+          <Tooltip title="收藏">
+            <Button
+              className={styles['opt-btn']}
+              type="text"
+              icon={<StarOutlined />}
+              onClick={changeStar}
+              loading={starLoading}
+            >
+              {starState ? '取消收藏' : '收藏'}
+            </Button>
           </Tooltip>
           <Tooltip title="复制">
-            <Button type="text" icon={<CopyOutlined />} />
+            <Button
+              className={styles['opt-btn']}
+              type="text"
+              icon={<CopyOutlined />}
+            >
+              复制
+            </Button>
           </Tooltip>
           <Tooltip title="删除">
-            <Button type="text" icon={<DeleteOutlined />} />
+            <Button
+              className={styles['opt-btn']}
+              type="text"
+              icon={<DeleteOutlined />}
+            >
+              删除
+            </Button>
           </Tooltip>
         </Space>
       </Flex>

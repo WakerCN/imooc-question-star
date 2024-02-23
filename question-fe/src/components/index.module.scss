@@ -44,6 +44,10 @@
     margin: 5px 0;
   }
 
+  .opt-btn {
+    padding: 0 5px;
+  }
+
   .title-wrap {
     margin: 0;
     @include flex-center(flex-start);
