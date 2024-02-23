@@ -1,10 +1,10 @@
-.question-manager {
+.question-manager,
+.star-question {
   height: 100%;
   @include antd-transition();
 }
 
-.recycle-bin,
-.star-question {
+.recycle-bin {
   @include main-card();
 
   .search-header {

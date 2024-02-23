@@ -17,4 +17,9 @@ $header-h: 60px;
       background: rgba(0, 0, 0, 0.06);
     }
   }
+
+  .main {
+    width: 100%;
+    height: calc(100% - $header-h);
+  }
 }

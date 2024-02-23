@@ -7,7 +7,7 @@ interface Props {}
 export const MyQuestions: React.FC<Props> = () => {
   return (
     <div className={styles['question-manager']}>
-      <QuestionList />
+      <QuestionList type="my-question" />
     </div>
   );
 };

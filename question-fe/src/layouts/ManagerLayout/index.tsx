@@ -1,12 +1,14 @@
 import { useTitle } from '@/hooks/common';
 import { ROUTE_NAME, ROUTE_PATH } from '@/routers';
+import { QuestionService } from '@/services/question';
 import {
   DeleteFilled,
   PlusOutlined,
   ProfileFilled,
   StarFilled
 } from '@ant-design/icons';
-import { Button, Divider, Space } from 'antd';
+import { useRequest } from 'ahooks';
+import { Button, Divider, Space, message } from 'antd';
 import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
@@ -17,11 +19,11 @@ export const ManagerLayout: React.FC<Props> = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  useTitle(ROUTE_NAME[pathname]);
+
   const isQuestionPage = pathname === ROUTE_PATH.MANAGER;
   const isRecyleBinPage = pathname === ROUTE_PATH.RECYCLE;
   const isStarPage = pathname === ROUTE_PATH.STAR;
-
-  useTitle(ROUTE_NAME[pathname]);
 
   const handleToQuestionList = () => {
     navigate({ pathname: ROUTE_PATH.MANAGER });
@@ -35,6 +37,20 @@ export const ManagerLayout: React.FC<Props> = () => {
     navigate({ pathname: '/manager/recycle-bin' });
   };
 
+  const { loading: createLoading, run: handleCreateQuetion } = useRequest(
+    QuestionService.createQuestion,
+    {
+      manual: true,
+      onSuccess: (data) => {
+        const { id } = data || {};
+        if (id) {
+          navigate({ pathname: `${ROUTE_PATH.EDIT}${id}` });
+          message.success('问卷创建成功');
+        }
+      }
+    }
+  );
+
   return (
     <section className={styles['manager-layout']}>
       <Space className={styles['menu']}>
@@ -43,6 +59,8 @@ export const ManagerLayout: React.FC<Props> = () => {
           className={styles['btn']}
           icon={<PlusOutlined />}
           block
+          loading={createLoading}
+          onClick={handleCreateQuetion}
         >
           新建问卷
         </Button>

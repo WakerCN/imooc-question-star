@@ -1,0 +1,19 @@
+{
+  "name": "question-be-mock",
+  "version": "1.0.0",
+  "description": "慧簿mock后端",
+  "main": "index.js",
+  "scripts": {
+    "server": "npx nodemon src/index.js"
+  },
+  "author": "星一",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.15.0",
+    "koa-router": "^12.0.1",
+    "mockjs": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

@@ -27,6 +27,7 @@ export interface QuestionInfo {
   isStar: boolean;
   createAt: string;
   answerCount: number;
+  isDeleted: boolean;
 }
 
 interface QuestionCardProps {

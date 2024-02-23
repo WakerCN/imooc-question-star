@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start app",
+      "dependsOrder": "parallel",
+      "problemMatcher": [],
+      "dependsOn": ["start fe", "start mock server"],
+      "icon": { "color": "terminal.ansiYellow", "id": "chip" }
+    },
+    {
+      "label": "start fe",
+      "type": "npm",
+      "path": "question-fe",
+      "script": "dev",
+      "detail": "npm run dev",
+      "icon": { "color": "terminal.ansiGreen", "id": "browser" }
+    },
+    {
+      "type": "npm",
+      "script": "server",
+      "path": "question-be-mock",
+      "label": "start mock server",
+      "detail": "npx nodemon src/index.js",
+      "icon": { "color": "terminal.ansiBlue", "id": "server" }
+    }
+  ]
+}

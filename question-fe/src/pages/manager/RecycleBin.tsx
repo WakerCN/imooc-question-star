@@ -1,6 +1,6 @@
 import { ListSearch } from '@/components/ListSearch';
 import { QuestionInfo } from '@/components/QuestionCard';
-import { MockData } from '@/mocks/question-list';
+import { useQuestionList } from '@/hooks/question';
 import { Button, Space, Table, TableColumnsType, TableProps, Tag } from 'antd';
 import React, { useState } from 'react';
 import styles from './index.module.scss';
@@ -9,6 +9,9 @@ interface Props {}
 
 export const RecycleBin: React.FC<Props> = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+
+  const { data = {}, loading } = useQuestionList({ isDeleted: true });
+  const { list: questionList = [], total = 0 } = data;
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -40,12 +43,16 @@ export const RecycleBin: React.FC<Props> = () => {
   ];
 
   const tableProps: TableProps<QuestionInfo> = {
-    dataSource: MockData.questionList,
+    dataSource: questionList,
     columns,
+    loading,
     rowKey: (record) => record._id,
     rowSelection: {
       selectedRowKeys,
       onChange: onSelectChange
+    },
+    pagination: {
+      total
     }
   };
 
