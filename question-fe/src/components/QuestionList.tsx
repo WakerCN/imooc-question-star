@@ -1,7 +1,7 @@
 import { PAGINATION, SEARCH_KEY } from '@/constants';
 import { QuestionService } from '@/services/question';
 import { useDebounceFn, useRequest } from 'ahooks';
-import { Col, Empty, Row, Space, Spin } from 'antd';
+import { Empty, Row, Space, Spin } from 'antd';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ListSearch } from './ListSearch';
@@ -128,9 +128,7 @@ export const QuestionList: React.FC<QuestionListProps> = (props) => {
       <Row ref={listRef} className={styles['list']} gutter={[10, 10]}>
         {list.length
           ? list.map((question: QuestionInfo) => (
-              <Col key={question._id} span={24}>
-                <QuestionCard info={question} />
-              </Col>
+              <QuestionCard info={question} />
             ))
           : started && (
               <Empty

@@ -22,7 +22,7 @@ export const useQuestionList = (params: ListParams = {}) => {
   const pageSize =
     parseInt(searchParams.get(SEARCH_KEY.SIZE) || '') || PAGINATION.SIZE;
 
-  const { data, loading } = useRequest(
+  return useRequest(
     async () => {
       const data = await QuestionService.getQuestionList({
         keyword,
@@ -36,6 +36,4 @@ export const useQuestionList = (params: ListParams = {}) => {
       refreshDeps: [keyword, page, pageSize]
     }
   );
-
-  return { data, loading };
 };

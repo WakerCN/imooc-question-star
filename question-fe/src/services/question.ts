@@ -36,6 +36,7 @@ const getQuestionList = async (
   return data;
 };
 
+/** 更新问卷 */
 const updateQuestion = async (
   id: string,
   params: Partial<QuestionInfo>
@@ -45,9 +46,27 @@ const updateQuestion = async (
   return data;
 };
 
+/** 复制问卷 */
+const duplicateQuestion = async (id: string): Promise<RequestData> => {
+  const url = `/api/question/duplicate/${id}`;
+  const data = (await axiosInstance.post(url)) as RequestData;
+  return data;
+};
+
+/** 彻底删除问卷 */
+const deleteQuestion = async (ids: string[]): Promise<RequestData> => {
+  const url = `/api/question`;
+  const data = (await axiosInstance.delete(url, {
+    data: { ids }
+  })) as RequestData;
+  return data;
+};
+
 export const QuestionService = {
   getQuestion,
   createQuestion,
   getQuestionList,
-  updateQuestion
+  updateQuestion,
+  duplicateQuestion,
+  deleteQuestion
 };

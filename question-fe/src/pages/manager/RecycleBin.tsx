@@ -1,12 +1,21 @@
 import { ListSearch } from '@/components/ListSearch';
 import { QuestionInfo } from '@/components/QuestionCard';
-import { useQuestionList } from '@/hooks/question';
-import { useSize } from 'ahooks';
-import { Button, Space, Table, TableColumnsType, TableProps, Tag } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './index.module.scss';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { SEARCH_KEY } from '@/constants';
+import { useQuestionList } from '@/hooks/question';
+import { QuestionService } from '@/services/question';
+import { useRequest, useSize } from 'ahooks';
+import {
+  Button,
+  Space,
+  Table,
+  TableColumnsType,
+  TableProps,
+  Tag,
+  message
+} from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import styles from './index.module.scss';
 
 interface Props {}
 
@@ -31,7 +40,17 @@ export const RecycleBin: React.FC<Props> = () => {
     setPageSize(pageSize);
   }, [searchParams]);
 
-  const { data = {}, loading } = useQuestionList({ isDeleted: true });
+  const {
+    data = {},
+    loading,
+    refreshAsync: refreshList
+  } = useQuestionList({ isDeleted: true });
+
+  const handleRefresh = async () => {
+    await refreshList();
+    setSelectedRowKeys([]);
+  };
+
   const { list: questionList = [], total = 0 } = data;
 
   const ref = useRef<HTMLDivElement>(null);
@@ -93,6 +112,48 @@ export const RecycleBin: React.FC<Props> = () => {
     scroll: scrollY < 56 * pageSize ? { y: scrollY } : undefined
   };
 
+  // ========== 恢复 start ========== //
+  const handleRecover = async () => {
+    await recoverQuestion();
+  };
+
+  const { runAsync: recoverQuestion, loading: recoverLoading } = useRequest(
+    async () => {
+      for await (const id of selectedRowKeys) {
+        await QuestionService.updateQuestion(id.toString(), {
+          isDeleted: false
+        });
+      }
+      return;
+    },
+    {
+      manual: true,
+      debounceWait: 1000,
+      debounceLeading: true,
+      onSuccess: async () => {
+        message.success('恢复成功');
+        await handleRefresh();
+      }
+    }
+  );
+  // =========== 恢复 end =========== //
+
+  // ========== 彻底删除 start ========== //
+  const { runAsync: deleteQuestion, loading: deleteLoading } = useRequest(
+    async () =>
+      QuestionService.deleteQuestion(
+        selectedRowKeys.map((id) => id.toString())
+      ),
+    {
+      manual: true,
+      onSuccess: async () => {
+        message.success('删除成功');
+        await handleRefresh();
+      }
+    }
+  );
+  // =========== 彻底删除 end =========== //
+
   return (
     <div className={styles['recycle-bin']}>
       <section className={styles['search-header']}>
@@ -100,10 +161,20 @@ export const RecycleBin: React.FC<Props> = () => {
         <ListSearch />
       </section>
       <Space className={styles['operate-btns']}>
-        <Button type={'primary'} disabled={selectedRowKeys.length === 0}>
+        <Button
+          type={'primary'}
+          disabled={selectedRowKeys.length === 0}
+          loading={recoverLoading}
+          onClick={handleRecover}
+        >
           恢复
         </Button>
-        <Button danger disabled={selectedRowKeys.length === 0}>
+        <Button
+          danger
+          disabled={selectedRowKeys.length === 0}
+          loading={deleteLoading}
+          onClick={deleteQuestion}
+        >
           彻底删除
         </Button>
       </Space>

@@ -75,7 +75,34 @@ module.exports = [
     response() {
       return {
         errno: 0,
-        msg: "修改成功"
+        msg: "update成功"
+      };
+    }
+  },
+  /* 复制 问卷
+  =========================================== */
+  {
+    url: "/api/question/duplicate/:id",
+    method: "post",
+    response() {
+      return {
+        errno: 0,
+        msg: "复制成功",
+        data: {
+          id: Random.id()
+        }
+      };
+    }
+  },
+  /* 彻底删除 问卷
+  =========================================== */
+  {
+    url: "/api/question",
+    method: "delete",
+    response() {
+      return {
+        errno: 0,
+        msg: "删除成功"
       };
     }
   }
