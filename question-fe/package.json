@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,less,sass,scss,json}'",
-    "prepare": "cd .. && husky ./question-fe/.husky"
+    "prepare": "cd .. && husky ./question-fe/.husky",
+    "commit": "npx czg"
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.0",

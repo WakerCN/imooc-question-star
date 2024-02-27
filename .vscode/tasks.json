@@ -23,6 +23,18 @@
       "label": "start mock server",
       "detail": "npx nodemon src/index.js",
       "icon": { "color": "terminal.ansiBlue", "id": "server" }
+    },
+
+    /* git 提交
+    =========================================== */
+    {
+      "type": "npm",
+      "label": "git commit",
+      "path": "question-fe",
+      "script": "commit",
+      "detail": "npm run commit",
+      "icon": { "color": "terminal.ansiYellow", "id": "git-branch" },
+      "problemMatcher": []
     }
   ]
 }
