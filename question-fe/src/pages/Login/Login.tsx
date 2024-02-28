@@ -1,7 +1,10 @@
 import { baseFormLayouts } from '@/assets/styles';
+import { message } from '@/components/AntdStatic';
 import { useTitle } from '@/hooks/common';
 import { ROUTE_PATH } from '@/routers';
+import { UserService } from '@/services/user';
 import { GithubOutlined } from '@ant-design/icons';
+import { useRequest } from 'ahooks';
 import {
   Button,
   Checkbox,
@@ -36,13 +39,34 @@ export const Login: React.FC<Props> = () => {
     navigate(ROUTE_PATH.RESGISTER);
   };
 
-  const handleLogin: FormProps['onFinish'] = (values: LoginForm) => {
-    if (values.remember) {
-      rememberLoginInfo(values);
-    } else {
-      clearLoginInfo();
-    }
+  const handleLogin: FormProps['onFinish'] = async (values: LoginForm) => {
+    await login({ username: values.username, password: values.password });
   };
+
+  const { runAsync: login, loading } = useRequest(
+    async (params) => UserService.login(params),
+    {
+      manual: true,
+      onSuccess: (response) => {
+        console.log(
+          '%c 🥥 response',
+          'font-size:16px;color:#666666;background:#92C3D3',
+          response
+        );
+
+        message.success('登录成功');
+        const values = form.getFieldsValue();
+        /* 记住密码功能
+        =========================================== */
+        if (values.remember) {
+          rememberLoginInfo(values);
+        } else {
+          clearLoginInfo();
+        }
+        navigate(ROUTE_PATH.MANAGER);
+      }
+    }
+  );
 
   useEffect(() => {
     const info = getLoginInfo();
@@ -82,7 +106,7 @@ export const Login: React.FC<Props> = () => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 6 }}>
             <Space>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
                 登录
               </Button>
               <Button type="link" onClick={handleJumptoRegister}>

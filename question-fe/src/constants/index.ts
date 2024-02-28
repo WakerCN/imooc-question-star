@@ -15,7 +15,8 @@ export const SEARCH_KEY = {
 
 /** localStorage key */
 export const LOCALSTORAGE_KEY = {
-  USER_INFO: 'userInfo'
+  USER_INFO: 'userInfo',
+  TOKEN: 'token'
 };
 
 /** 分页组件 */

@@ -1,18 +1,11 @@
 import { ListSearch } from '@/components/ListSearch';
 import { QuestionInfo } from '@/components/QuestionCard';
 import { SEARCH_KEY } from '@/constants';
+import { message } from '@/components/AntdStatic';
 import { useQuestionList } from '@/hooks/question';
 import { QuestionService } from '@/services/question';
 import { useRequest, useSize } from 'ahooks';
-import {
-  Button,
-  Space,
-  Table,
-  TableColumnsType,
-  TableProps,
-  Tag,
-  message
-} from 'antd';
+import { Button, Space, Table, TableColumnsType, TableProps, Tag } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './index.module.scss';

@@ -1,13 +1,13 @@
-import { message } from 'antd';
+import { message } from '@/components/AntdStatic';
 import axios from 'axios';
 
 export interface ResponseInfo {
   errno: number;
   msg: string;
-  data?: RequestData;
+  data?: ResponseData;
 }
 
-export interface RequestData {
+export interface ResponseData {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

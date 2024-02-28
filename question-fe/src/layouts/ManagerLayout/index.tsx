@@ -1,3 +1,4 @@
+import { message } from '@/components/AntdStatic';
 import { useTitle } from '@/hooks/common';
 import { ROUTE_NAME, ROUTE_PATH } from '@/routers';
 import { QuestionService } from '@/services/question';
@@ -8,7 +9,7 @@ import {
   StarFilled
 } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
-import { Button, Divider, Space, message } from 'antd';
+import { Button, Divider, Space } from 'antd';
 import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';

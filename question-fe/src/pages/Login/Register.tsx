@@ -1,7 +1,10 @@
 import { baseFormLayouts } from '@/assets/styles';
+import { message } from '@/components/AntdStatic';
 import { useTitle } from '@/hooks/common';
 import { ROUTE_PATH } from '@/routers';
+import { UserService } from '@/services/user';
 import { GithubOutlined } from '@ant-design/icons';
+import { useRequest } from 'ahooks';
 import { Button, Form, Input, Space, Typography } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,13 +13,32 @@ import { passwordRules, usernameRules } from './rules';
 
 interface Props {}
 
+interface RegisterForm {
+  username: string;
+  password: string;
+  confirm: string;
+}
+
 export const Register: React.FC<Props> = () => {
   useTitle('注册');
-
   const navigate = useNavigate();
 
   const handleLogin = () => {
     navigate(ROUTE_PATH.LOGIN);
+  };
+
+  const { runAsync: resgiter, loading } = useRequest(
+    async (params) => UserService.register(params),
+    {
+      manual: true,
+      onSuccess: () => {
+        message.success('注册成功');
+        navigate(ROUTE_PATH.LOGIN);
+      }
+    }
+  );
+  const handleRegister = async (values: RegisterForm) => {
+    await resgiter({ username: values.username, password: values.password });
   };
 
   return (
@@ -28,7 +50,7 @@ export const Register: React.FC<Props> = () => {
             注册
           </Space>
         </Typography.Title>
-        <Form {...baseFormLayouts}>
+        <Form {...baseFormLayouts} onFinish={handleRegister}>
           <Form.Item name={'username'} label="用户名" rules={usernameRules}>
             <Input placeholder={'请输入用户名'} />
           </Form.Item>
@@ -54,7 +76,7 @@ export const Register: React.FC<Props> = () => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 6 }}>
             <Space>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={loading}>
                 注册
               </Button>
               <Button type="link" onClick={handleLogin}>

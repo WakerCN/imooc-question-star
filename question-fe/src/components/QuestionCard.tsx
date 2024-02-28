@@ -1,5 +1,7 @@
+import { message, modal } from '@/components/AntdStatic';
 import { ROUTE_PATH } from '@/routers';
 import { QuestionService } from '@/services/question';
+import { AntdTools } from '@/utils/antd';
 import {
   CopyOutlined,
   DeleteOutlined,
@@ -13,18 +15,15 @@ import {
   Col,
   Divider,
   Flex,
-  Modal,
   Rate,
   Space,
   Tag,
   Tooltip,
-  Typography,
-  message
+  Typography
 } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
-import { AntdTools } from '@/utils/antd';
 
 export interface QuestionInfo {
   _id: string;
@@ -43,7 +42,6 @@ interface QuestionCardProps {
 export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
   const { info } = props;
   const { title, answerCount, createAt, isPublished, _id, isStar } = info;
-  const [modal, contextHolder] = Modal.useModal();
 
   const naviagte = useNavigate();
 
@@ -138,7 +136,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
   }
 
   return (
-    <Col key={_id} span={24}>
+    <Col span={24}>
       <div className={styles['question-card']}>
         <Flex justify="space-between">
           <div className={styles['title-wrap']}>
@@ -221,7 +219,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
             </Tooltip>
           </Space>
         </Flex>
-        {contextHolder}
       </div>
     </Col>
   );

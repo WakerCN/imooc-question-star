@@ -1,26 +1,16 @@
 import { Logo } from '@/components/Logo';
+import { UserInfo } from '@/components/UserInfo';
 import { useTransitionRef } from '@/hooks/transition';
 import { ROUTE_PATH } from '@/routers';
-import { Button, Flex, Space } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { Button, Flex } from 'antd';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from './index.module.scss';
 
 export default function MainLayout() {
-  const navigate = useNavigate();
-
   const { nodeRef, currentOutlet, location } = useTransitionRef();
 
   const handleToAuthor = () => {
     window.open('https://github.com/WakerCN');
-  };
-
-  const handleLogin = () => {
-    navigate(ROUTE_PATH.LOGIN);
-  };
-
-  const handleRegister = () => {
-    navigate(ROUTE_PATH.RESGISTER);
   };
 
   const transitionRoute = [
@@ -34,14 +24,7 @@ export default function MainLayout() {
     <section className={styles['main-layout']}>
       <Flex justify="space-between" align="center" className={styles['header']}>
         <Logo />
-        <Space>
-          <Button type="link" onClick={handleLogin}>
-            登录
-          </Button>
-          <Button type="link" onClick={handleRegister}>
-            注册
-          </Button>
-        </Space>
+        <UserInfo />
       </Flex>
       <main className={styles['main']}>
         {transitionRoute.includes(location.pathname) ? (

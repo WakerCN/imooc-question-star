@@ -128,7 +128,7 @@ export const QuestionList: React.FC<QuestionListProps> = (props) => {
       <Row ref={listRef} className={styles['list']} gutter={[10, 10]}>
         {list.length
           ? list.map((question: QuestionInfo) => (
-              <QuestionCard info={question} />
+              <QuestionCard key={question._id} info={question} />
             ))
           : started && (
               <Empty
