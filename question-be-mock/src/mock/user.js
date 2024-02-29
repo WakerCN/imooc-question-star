@@ -42,5 +42,17 @@ module.exports = [
         msg: "注册成功"
       };
     }
+  },
+  /* 登录
+  =========================================== */
+  {
+    url: "/api/user/logout",
+    method: "post",
+    response() {
+      return {
+        errno: 0,
+        msg: "注销成功"
+      };
+    }
   }
 ];

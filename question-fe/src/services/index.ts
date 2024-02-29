@@ -1,4 +1,5 @@
 import { message } from '@/components/AntdStatic';
+import { getToken } from '@/pages/Login/storage';
 import axios from 'axios';
 
 export interface ResponseInfo {
@@ -14,6 +15,14 @@ export interface ResponseData {
 
 const axiosInstance = axios.create({
   timeout: 10 * 1000
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 /* 响应拦截，错误统一处理

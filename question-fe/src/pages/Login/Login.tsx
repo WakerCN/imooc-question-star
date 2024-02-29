@@ -18,7 +18,12 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { passwordRules, usernameRules } from './rules';
-import { clearLoginInfo, getLoginInfo, rememberLoginInfo } from './storage';
+import {
+  clearLoginInfo,
+  getLoginInfo,
+  rememberLoginInfo,
+  setToken
+} from './storage';
 
 interface Props {}
 
@@ -48,16 +53,12 @@ export const Login: React.FC<Props> = () => {
     {
       manual: true,
       onSuccess: (response) => {
-        console.log(
-          '%c 🥥 response',
-          'font-size:16px;color:#666666;background:#92C3D3',
-          response
-        );
-
+        setToken(response.token);
         message.success('登录成功');
-        const values = form.getFieldsValue();
+
         /* 记住密码功能
         =========================================== */
+        const values = form.getFieldsValue();
         if (values.remember) {
           rememberLoginInfo(values);
         } else {

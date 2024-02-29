@@ -1,0 +1,9 @@
+.user-info {
+  padding: 6px 10px;
+  border-radius: 8px;
+  @include transition();
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}

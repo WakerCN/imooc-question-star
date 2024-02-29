@@ -19,8 +19,15 @@ const register = async (userInfo: Partial<LoginForm>) => {
   return data;
 };
 
+const logout = async () => {
+  const url = '/api/user/logout';
+  const data = (await axiosInstance.post(url)) as ResponseData;
+  return data;
+};
+
 export const UserService = {
   getInfo,
   login,
-  register
+  register,
+  logout
 };
