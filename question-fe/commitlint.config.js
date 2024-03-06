@@ -38,7 +38,7 @@ const config = {
     },
     customScopesAlign: 'top',
     defaultScope: ['custom'],
-    scopes: ['list'],
+    scopes: ['list', 'study'],
     allowCustomScopes: true,
     allowEmptyScopes: true,
     allowEmptyIssuePrefixs: true,

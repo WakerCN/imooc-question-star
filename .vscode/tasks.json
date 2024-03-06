@@ -25,6 +25,16 @@
       "icon": { "color": "terminal.ansiBlue", "id": "server" }
     },
 
+    {
+      "label": "start demo",
+      "type": "npm",
+      "path": "study-demo",
+      "script": "dev",
+      "detail": "npm run dev",
+      "icon": { "color": "terminal.ansiGreen", "id": "browser" },
+      "problemMatcher": []
+    },
+
     /* git 提交
     =========================================== */
     {
