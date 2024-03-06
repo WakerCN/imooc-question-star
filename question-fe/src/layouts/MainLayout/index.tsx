@@ -1,13 +1,16 @@
 import { Logo } from '@/components/Logo';
 import { UserInfo } from '@/components/UserInfo';
 import { useTransitionRef } from '@/hooks/transition';
+import { useLoadUserInfo } from '@/hooks/user';
 import { ROUTE_PATH } from '@/routers';
-import { Button, Flex } from 'antd';
+import { Button, Flex, Spin } from 'antd';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from './index.module.scss';
 
 export default function MainLayout() {
   const { nodeRef, currentOutlet, location } = useTransitionRef();
+
+  const { waitUserInfo } = useLoadUserInfo();
 
   const handleToAuthor = () => {
     window.open('https://github.com/WakerCN');
@@ -27,7 +30,9 @@ export default function MainLayout() {
         <UserInfo />
       </Flex>
       <main className={styles['main']}>
-        {transitionRoute.includes(location.pathname) ? (
+        {waitUserInfo ? (
+          <Spin tip="加载用户信息中..." fullscreen />
+        ) : transitionRoute.includes(location.pathname) ? (
           <SwitchTransition>
             <CSSTransition
               ref={nodeRef}

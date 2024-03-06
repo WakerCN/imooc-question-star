@@ -6,14 +6,22 @@ module.exports = [
   {
     url: "/api/user/info",
     method: "get",
-    response() {
-      return {
-        errno: 0,
-        data: {
-          username: Random.cname()
-        },
-        msg: "成功"
-      };
+    delay: 1000,
+    response(ctx) {
+      if (ctx.header.authorization) {
+        return {
+          errno: 0,
+          data: {
+            username: Random.cname()
+          },
+          msg: "成功"
+        };
+      } else {
+        return {
+          errno: 403,
+          msg: "获取用户信息失败"
+        };
+      }
     }
   },
   /* 登录

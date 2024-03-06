@@ -119,3 +119,13 @@ export const ROUTE_NAME = {
   [ROUTE_PATH.STAR]: '收藏问卷',
   [ROUTE_PATH.RECYCLE]: '回收站'
 };
+
+export const isLoginAndRegister = (pathname: string) => {
+  return [ROUTE_PATH.LOGIN, ROUTE_PATH.RESGISTER].includes(pathname);
+};
+
+export const noNeedUserInfo = (pathname: string) => {
+  return [ROUTE_PATH.HOME, ROUTE_PATH.LOGIN, ROUTE_PATH.RESGISTER].includes(
+    pathname
+  );
+};

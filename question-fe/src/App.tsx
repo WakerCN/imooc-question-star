@@ -1,5 +1,4 @@
 import '@/assets/styles/index.scss';
-// import { QuestionList } from './components/QuestionList';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routers';
 

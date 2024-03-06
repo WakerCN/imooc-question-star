@@ -1,13 +1,16 @@
+import { useLoadUserInfo } from '@/hooks/user';
+import { RollbackOutlined } from '@ant-design/icons';
+import { Button, Spin } from 'antd';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
-import { RollbackOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 
 interface Props {}
 
 export const QuestionLayout: React.FC<Props> = () => {
   const navigate = useNavigate();
+
+  const { waitUserInfo } = useLoadUserInfo();
 
   const handleBack = () => {
     navigate(-1);
@@ -21,7 +24,11 @@ export const QuestionLayout: React.FC<Props> = () => {
         </Button>
       </header>
       <main className={styles['main']}>
-        <Outlet />
+        {waitUserInfo ? (
+          <Spin fullscreen tip={'加载用户信息中...'} />
+        ) : (
+          <Outlet />
+        )}
       </main>
     </div>
   );

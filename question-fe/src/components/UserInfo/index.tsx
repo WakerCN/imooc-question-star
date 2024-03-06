@@ -1,13 +1,16 @@
+import { useAppDispatch } from '@/hooks/redux';
+import { useGetUserInfo } from '@/hooks/user';
+import { removeToken } from '@/pages/Login/storage';
 import { ROUTE_PATH } from '@/routers';
 import { UserService } from '@/services/user';
+import { userSlice } from '@/stores/user';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { useRequest } from 'ahooks';
-import { Avatar, Button, Dropdown, MenuProps, Space, Spin } from 'antd';
+import { Avatar, Button, Dropdown, MenuProps, Space } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { message, notification } from '../AntdStatic';
 import styles from './index.module.scss';
-import { removeToken } from '@/pages/Login/storage';
 
 interface Props {}
 
@@ -22,7 +25,9 @@ export const UserInfo: React.FC<Props> = () => {
     navigate(ROUTE_PATH.RESGISTER);
   };
 
-  const { data: userInfo, loading } = useRequest(UserService.getInfo);
+  const userInfo = useGetUserInfo();
+  const dispatch = useAppDispatch();
+  const { removeInfo } = userSlice.actions;
 
   const { runAsync: logout } = useRequest(UserService.logout, {
     manual: true,
@@ -33,8 +38,8 @@ export const UserInfo: React.FC<Props> = () => {
       });
     },
     onSuccess: () => {
+      dispatch(removeInfo());
       removeToken();
-      navigate(ROUTE_PATH.LOGIN);
       message.destroy('logout');
     }
   });
@@ -64,9 +69,8 @@ export const UserInfo: React.FC<Props> = () => {
       onClick: logout
     }
   ];
-  return loading ? (
-    <Spin />
-  ) : userInfo ? (
+
+  return userInfo.username ? (
     <Dropdown menu={{ items }}>
       <Space className={styles['user-info']}>
         <Avatar icon={<UserOutlined />} />

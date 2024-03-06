@@ -1,4 +1,6 @@
+import { notification } from '@/components/AntdStatic';
 import { useTitle } from '@/hooks/common';
+import { useGetUserInfo } from '@/hooks/user';
 import { ROUTE_PATH } from '@/routers';
 import { Button } from 'antd';
 import confetti from 'canvas-confetti';
@@ -13,9 +15,14 @@ export const Home: React.FC<Props> = () => {
 
   const naviagte = useNavigate();
 
+  const { username } = useGetUserInfo();
+
   const handleStart = async () => {
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    naviagte(ROUTE_PATH.MANAGER);
+    if (!username) {
+      notification.info({ message: '请先登录 🥰' });
+    }
+    naviagte(username ? ROUTE_PATH.MANAGER : ROUTE_PATH.LOGIN);
   };
 
   return (
