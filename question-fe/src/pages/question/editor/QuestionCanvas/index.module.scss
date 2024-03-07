@@ -1,0 +1,13 @@
+.question-canvas-area {
+  /* 减去左边pane和右边pane宽度
+  =========================================== */
+  width: calc(100% - 300px - 400px);
+  @include flex-center();
+
+  .canvas {
+    width: 430px;
+    height: 800px;
+    background: white;
+    padding: 20px;
+  }
+}

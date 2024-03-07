@@ -1,0 +1,7 @@
+.left-pane {
+  width: 300px;
+  padding: 0px 10px 10px 10px;
+  @include forsted-glass();
+  @include box-shadow();
+  border-radius: 20px;
+}

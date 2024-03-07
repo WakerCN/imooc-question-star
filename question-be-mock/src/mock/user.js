@@ -6,7 +6,7 @@ module.exports = [
   {
     url: "/api/user/info",
     method: "get",
-    delay: 1000,
+    delay: 0,
     response(ctx) {
       if (ctx.header.authorization) {
         return {

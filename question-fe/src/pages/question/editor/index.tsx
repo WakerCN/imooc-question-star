@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom';
 import styles from './index.module.scss';
 import { Spin } from 'antd';
 import { ErrorPage } from '@/components/ErrorPage';
+import { LeftPane } from './LeftPane';
+import { RightPane } from './RightPane';
+import { QuestionCanvas } from './QuestionCanvas';
 
 interface Props {}
 
@@ -13,7 +16,7 @@ export const QuestionEditor: React.FC<Props> = () => {
 
   useTitle(`编辑 ${params.id}`);
 
-  const { loading, error, data } = useQuestionDetail();
+  const { loading, error } = useQuestionDetail();
 
   return (
     <div className={styles['editor-page']}>
@@ -22,10 +25,10 @@ export const QuestionEditor: React.FC<Props> = () => {
       ) : error ? (
         <ErrorPage msg={error.message} />
       ) : (
-        <div>
-          QuestionEditor
-          <div>Edit {params.id}</div>
-          {JSON.stringify(data, null, 2)}
+        <div className={styles['edit-main']}>
+          <LeftPane />
+          <QuestionCanvas />
+          <RightPane />
         </div>
       )}
     </div>

@@ -3,6 +3,8 @@ $header-h: 60px;
 .quesion-layout {
   height: 100vh;
   width: 100vw;
+  min-width: 1250px;
+  min-height: 1000px;
   background: url('../../assets/image/appBg.svg');
 
   .header {
@@ -14,7 +16,13 @@ $header-h: 60px;
     @include flex-center(space-between);
 
     .back-btn {
+      height: 100%;
       background: rgba(0, 0, 0, 0.06);
+    }
+
+    .top-area {
+      width: calc(100% - 46px);
+      height: 100%;
     }
   }
 

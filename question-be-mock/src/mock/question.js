@@ -7,11 +7,12 @@ module.exports = [
   {
     url: "/api/question/:id",
     method: "post",
-    response() {
+    response(ctx) {
+      const id = ctx.params.id;
       return {
         errno: 0,
         data: {
-          id: Random.id(),
+          id,
           title: Random.ctitle()
         },
         msg: "成功"

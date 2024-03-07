@@ -1,9 +1,11 @@
 import { useLoadUserInfo } from '@/hooks/user';
+import { TopPane } from '@/pages/question/editor/TopPane';
 import { RollbackOutlined } from '@ant-design/icons';
 import { Button, Spin } from 'antd';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
+import { ROUTE_PATH } from '@/routers';
 
 interface Props {}
 
@@ -13,7 +15,7 @@ export const QuestionLayout: React.FC<Props> = () => {
   const { waitUserInfo } = useLoadUserInfo();
 
   const handleBack = () => {
-    navigate(-1);
+    navigate(ROUTE_PATH.MANAGER);
   };
 
   return (
@@ -22,6 +24,9 @@ export const QuestionLayout: React.FC<Props> = () => {
         <Button className={styles['back-btn']} type="text" onClick={handleBack}>
           <RollbackOutlined />
         </Button>
+        <div className={styles['top-area']}>
+          <TopPane />
+        </div>
       </header>
       <main className={styles['main']}>
         {waitUserInfo ? (
