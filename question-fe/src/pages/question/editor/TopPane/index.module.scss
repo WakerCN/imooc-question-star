@@ -1,5 +1,18 @@
 .top-pane {
   width: 100%;
   height: 100%;
-  @include flex-center(space-between);
+  display: flex;
+  align-items: center;
+
+  .title-area {
+    width: calc(300px - 46px);
+  }
+
+  .tools-area {
+    flex: 1;
+  }
+
+  .right-opt {
+    width: 400px;
+  }
 }

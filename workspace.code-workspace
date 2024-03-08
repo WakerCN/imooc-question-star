@@ -13,6 +13,14 @@
       "path": "./question-fe"
     },
     {
+      "name": "question-editor",
+      "path": "./question-fe/src/pages/question/editor"
+    },
+    {
+      "name": "question-fe-widgets",
+      "path": "./question-fe/src/widgets"
+    },
+    {
       "name": "question-be-mock",
       "path": "./question-be-mock"
     }

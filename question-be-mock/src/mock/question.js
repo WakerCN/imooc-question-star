@@ -13,7 +13,37 @@ module.exports = [
         errno: 0,
         data: {
           id,
-          title: Random.ctitle()
+          title: Random.ctitle(),
+          widgetList: [
+            {
+              fe_id: Random.id(),
+              type: "title",
+              title: "标题1",
+              props: {
+                title: "问卷调查",
+                level: 1,
+                align: "center"
+              }
+            },
+            {
+              fe_id: Random.id(),
+              type: "input",
+              title: "输入框1",
+              props: {
+                title: "你的姓名",
+                placeholder: "请输入姓名"
+              }
+            },
+            {
+              fe_id: Random.id(),
+              type: "input",
+              title: "输入框2",
+              props: {
+                title: "你的电话",
+                placeholder: "请输入电话"
+              }
+            }
+          ]
         },
         msg: "成功"
       };

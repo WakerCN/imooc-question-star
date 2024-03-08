@@ -1,26 +1,9 @@
 import { PAGINATION, SEARCH_KEY } from '@/constants';
 import { ListParams, QuestionService } from '@/services/question';
-import { QuestionDetail, questionSlice } from '@/stores/question';
+import { QuestionDetails, questionSlice } from '@/stores/question';
 import { useRequest } from 'ahooks';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { useAppDispatch } from './redux';
-
-export const useQuestionDetail = () => {
-  const { id = '' } = useParams();
-  const dispatch = useAppDispatch();
-  const { setDetail } = questionSlice.actions;
-
-  const getQuestionDetail = async () => {
-    return QuestionService.getQuestion(id);
-  };
-
-  const { loading, error, data } = useRequest(getQuestionDetail, {
-    onSuccess: (res) => {
-      dispatch(setDetail(res as QuestionDetail));
-    }
-  });
-  return { loading, error, data };
-};
+import { useAppDispatch, useAppSelector } from './redux';
 
 export const useQuestionList = (params: ListParams = {}) => {
   const [searchParams] = useSearchParams();
@@ -44,4 +27,32 @@ export const useQuestionList = (params: ListParams = {}) => {
       refreshDeps: [keyword, page, pageSize]
     }
   );
+};
+
+/** 从服务端加载 QuestionDetails */
+export const useLoadQuestionDetail = () => {
+  const { id = '' } = useParams();
+  const dispatch = useAppDispatch();
+  const { setDetail } = questionSlice.actions;
+
+  const getQuestionDetail = async () => {
+    return QuestionService.getQuestion(id);
+  };
+
+  const { loading, error, data } = useRequest(getQuestionDetail, {
+    onSuccess: (res) => {
+      const result = res as QuestionDetails;
+      const { widgetList } = result;
+      let selectedId = null;
+      if (widgetList.length) selectedId = widgetList[0].fe_id;
+      dispatch(setDetail({ ...result, selectedId }));
+    }
+  });
+  return { loading, error, data };
+};
+
+export const useGetQuestionDetail = () => {
+  const details = useAppSelector((state) => state.question);
+
+  return { details, ...details };
 };

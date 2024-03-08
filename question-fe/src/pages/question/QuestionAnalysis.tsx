@@ -1,6 +1,6 @@
 import { ErrorPage } from '@/components/ErrorPage';
 import { useTitle } from '@/hooks/common';
-import { useQuestionDetail } from '@/hooks/question';
+import { useLoadQuestionDetail } from '@/hooks/question';
 import { Spin } from 'antd';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,7 +10,7 @@ interface Props {}
 
 export const QuestionAnalysis: React.FC<Props> = () => {
   const params = useParams();
-  const { loading, error, data } = useQuestionDetail();
+  const { loading, error, data } = useLoadQuestionDetail();
 
   useTitle(`问卷分析 ${params.id}`);
 

@@ -1,5 +1,5 @@
 import { useTitle } from '@/hooks/common';
-import { useQuestionDetail } from '@/hooks/question';
+import { useLoadQuestionDetail } from '@/hooks/question';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './index.module.scss';
@@ -16,7 +16,7 @@ export const QuestionEditor: React.FC<Props> = () => {
 
   useTitle(`编辑 ${params.id}`);
 
-  const { loading, error } = useQuestionDetail();
+  const { loading, error } = useLoadQuestionDetail();
 
   return (
     <div className={styles['editor-page']}>
