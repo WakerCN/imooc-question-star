@@ -17,17 +17,17 @@ module.exports = [
           widgetList: [
             {
               fe_id: Random.id(),
-              type: "title",
+              baseType: "title",
               title: "标题1",
               props: {
                 title: "问卷调查",
                 level: 1,
-                align: "center"
+                alignCenter: true
               }
             },
             {
               fe_id: Random.id(),
-              type: "input",
+              baseType: "input",
               title: "输入框1",
               props: {
                 title: "你的姓名",
@@ -36,7 +36,7 @@ module.exports = [
             },
             {
               fe_id: Random.id(),
-              type: "input",
+              baseType: "input",
               title: "输入框2",
               props: {
                 title: "你的电话",

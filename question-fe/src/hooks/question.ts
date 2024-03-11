@@ -1,6 +1,17 @@
+/*
+ * @Author       : 魏威
+ * @Date         : 2024-02-27 16:24
+ * @LastEditTime : 2024-03-11 15:05
+ * @LastEditors  : Waker
+ * @Description  :
+ */
 import { PAGINATION, SEARCH_KEY } from '@/constants';
 import { ListParams, QuestionService } from '@/services/question';
-import { QuestionDetails, questionSlice } from '@/stores/question';
+import {
+  QuestionDetails,
+  editInitialState,
+  questionSlice
+} from '@/stores/question';
 import { useRequest } from 'ahooks';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './redux';
@@ -45,14 +56,18 @@ export const useLoadQuestionDetail = () => {
       const { widgetList } = result;
       let selectedId = null;
       if (widgetList.length) selectedId = widgetList[0].fe_id;
-      dispatch(setDetail({ ...result, selectedId }));
+      dispatch(setDetail({ ...editInitialState, ...result, selectedId }));
     }
   });
   return { loading, error, data };
 };
 
+/** 从redux中获取问卷详细信息 */
 export const useGetQuestionDetail = () => {
   const details = useAppSelector((state) => state.question);
+  const { selectedId, widgetList } = details;
 
-  return { details, ...details };
+  const selectComponent = widgetList.find((item) => item.fe_id === selectedId);
+
+  return { details, selectComponent, ...details };
 };

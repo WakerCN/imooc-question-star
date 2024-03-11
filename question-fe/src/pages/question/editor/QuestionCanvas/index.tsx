@@ -1,14 +1,14 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:57
- * @LastEditTime : 2024-03-08 11:36
+ * @LastEditTime : 2024-03-11 09:35
  * @LastEditors  : Waker
  * @Description  : 画布
  */
 import { useGetQuestionDetail } from '@/hooks/question';
 import { useAppDispatch } from '@/hooks/redux';
 import { questionSlice } from '@/stores/question';
-import { WidgetInfo, getComponentConfigByType } from '@/widgets';
+import { WidgetInfo, getConfigByBaseType } from '@/widgets';
 import cx from 'classnames';
 import React from 'react';
 import styles from './index.module.scss';
@@ -16,8 +16,9 @@ import styles from './index.module.scss';
 interface Props {}
 
 const genateCompoenent = (info: WidgetInfo) => {
-  const { type, props } = info;
-  const config = getComponentConfigByType(type);
+  const { props, baseType } = info;
+  const config = getConfigByBaseType(baseType);
+
   if (!config) {
     return null;
   }

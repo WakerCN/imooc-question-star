@@ -19,6 +19,10 @@ export const themeConfig: ThemeConfig = {
        * 默认值：32
        */
       horizontalItemGutter: 16
+    },
+    Collapse: {
+      contentBg: 'transparent',
+      contentPadding: '10px'
     }
   }
 };

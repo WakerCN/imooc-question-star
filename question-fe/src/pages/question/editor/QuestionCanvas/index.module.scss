@@ -9,12 +9,14 @@
     height: 90%;
     background: white;
     padding: 10px;
+    overflow: auto;
 
     > .widget-wrap {
       border: 2px solid transparent;
       padding: 8px;
       margin-bottom: 10px;
       @include transition();
+      cursor: pointer;
 
       &:hover {
         border-color: #ffbb6e;
@@ -26,6 +28,7 @@
 
       > .mask-wrap {
         pointer-events: none;
+        user-select: none;
       }
     }
   }

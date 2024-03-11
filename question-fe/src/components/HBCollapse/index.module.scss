@@ -1,0 +1,8 @@
+.custom-collapse {
+  // background: pink;
+  > .custom-collapse-header {
+    user-select: none;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: var(--ant-border-radius-lg) !important;
+  }
+}
