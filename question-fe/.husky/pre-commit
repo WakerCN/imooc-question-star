@@ -13,10 +13,10 @@ cd question-fe
 echo -e "${BLUE}[pre-commit] 开始执行 npm run lint-staged${RES}"
 npm run lint-staged
 
-; echo -e "${BLUE}[pre-commit] 开始格式化文件${RES}"
-; npm run format
+# echo -e "${BLUE}[pre-commit] 开始格式化文件${RES}"
+# npm run format
 
-; echo -e "\n${BLUE}[pre-commit] 开始eslint检查${RES}"
-; npm run lint
+# echo -e "\n${BLUE}[pre-commit] 开始eslint检查${RES}"
+# npm run lint
 
-; git add .
+# git add .
