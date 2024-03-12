@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-11 16:48
- * @LastEditTime : 2024-03-11 17:39
+ * @LastEditTime : 2024-03-12 14:54
  * @LastEditors  : Waker
  * @Description  : input属性配置
  */
@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { WidgetConfig } from '..';
 
 export const AttributeConfig: WidgetConfig['AttributeConfig'] = (props) => {
-  const { value, onChange } = props;
+  const { value, onChange, disabled } = props;
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -25,6 +25,7 @@ export const AttributeConfig: WidgetConfig['AttributeConfig'] = (props) => {
   return (
     <Form
       form={form}
+      disabled={disabled}
       size={'small'}
       labelAlign="left"
       labelCol={{ span: 6 }}

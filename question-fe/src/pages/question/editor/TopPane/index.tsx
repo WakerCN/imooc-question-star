@@ -1,14 +1,7 @@
-import { CircleButton } from '@/components/CircleButton';
 import { useAppSelector } from '@/hooks/redux';
-import {
-  DeleteOutlined,
-  EyeInvisibleOutlined,
-  LockOutlined,
-  RedoOutlined,
-  UndoOutlined
-} from '@ant-design/icons';
 import { Button, Flex, Typography } from 'antd';
 import React from 'react';
+import { EditorToolBar } from './EditorToolbar';
 import styles from './index.module.scss';
 
 interface Props {}
@@ -29,13 +22,7 @@ export const TopPane: React.FC<Props> = () => {
           {title}
         </Typography.Title>
       </div>
-      <Flex className={styles['tools-area']} justify={'center'} gap={10}>
-        <CircleButton title="删除" icon={<DeleteOutlined />} />
-        <CircleButton title="隐藏" icon={<EyeInvisibleOutlined />} />
-        <CircleButton title="锁定" icon={<LockOutlined />} />
-        <CircleButton title="撤销" icon={<UndoOutlined />} />
-        <CircleButton title="重做" icon={<RedoOutlined />} />
-      </Flex>
+      <EditorToolBar />
       <Flex className={styles['right-opt']} justify={'end'} gap={10}>
         <Button>保存</Button>
         <Button type="primary">发布</Button>

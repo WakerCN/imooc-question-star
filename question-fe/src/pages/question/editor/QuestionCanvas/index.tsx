@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:57
- * @LastEditTime : 2024-03-11 09:35
+ * @LastEditTime : 2024-03-12 14:45
  * @LastEditors  : Waker
  * @Description  : 画布
  */
@@ -49,22 +49,25 @@ export const QuestionCanvas: React.FC<Props> = () => {
       onClick={handlClickWhiteArea}
     >
       <div className={styles['canvas']}>
-        {widgetList.map((info) => {
-          const { fe_id } = info;
-          return (
-            <div
-              className={cx(styles['widget-wrap'], {
-                [styles['active']]: selectedId === fe_id
-              })}
-              key={fe_id}
-              onClick={(e) => handleClick(e, fe_id)}
-            >
-              <div className={styles['mask-wrap']}>
-                {genateCompoenent(info)}
+        {widgetList
+          .filter((w) => !w.isHidden)
+          .map((info) => {
+            const { fe_id, isLocked } = info;
+            return (
+              <div
+                className={cx(styles['widget-wrap'], {
+                  [styles['active']]: selectedId === fe_id,
+                  [styles['locked']]: isLocked
+                })}
+                key={fe_id}
+                onClick={(e) => handleClick(e, fe_id)}
+              >
+                <div className={styles['mask-wrap']}>
+                  {genateCompoenent(info)}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

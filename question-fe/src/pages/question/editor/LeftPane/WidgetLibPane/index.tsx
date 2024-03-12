@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-08 13:41
- * @LastEditTime : 2024-03-11 10:03
+ * @LastEditTime : 2024-03-12 15:43
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -28,6 +28,8 @@ export const WidgetLibPane: React.FC<Props> = () => {
         addWidget({
           fe_id: nanoid(18),
           title: name,
+          isHidden: false,
+          isLocked: false,
           baseType,
           props: defaultProps
         })
@@ -45,7 +47,7 @@ export const WidgetLibPane: React.FC<Props> = () => {
             <Col span={12} key={comp.name}>
               <div
                 className={styles['widget-item']}
-                onClick={() => handleAdd(comp)}
+                onDoubleClick={() => handleAdd(comp)}
               >
                 {comp.name}
               </div>

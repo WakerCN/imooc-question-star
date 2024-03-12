@@ -1,9 +1,16 @@
+/*
+ * @Author       : 魏威
+ * @Date         : 2024-03-11 16:49
+ * @LastEditTime : 2024-03-12 14:54
+ * @LastEditors  : Waker
+ * @Description  :
+ */
 import { Checkbox, Form, FormProps, Input, Select } from 'antd';
 import { useEffect } from 'react';
 import { WidgetConfig } from '..';
 
 export const AttributeConfig: WidgetConfig['AttributeConfig'] = (props) => {
-  const { value, onChange } = props;
+  const { value, onChange, disabled } = props;
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -18,6 +25,7 @@ export const AttributeConfig: WidgetConfig['AttributeConfig'] = (props) => {
   return (
     <Form
       form={form}
+      disabled={disabled}
       labelAlign="left"
       labelCol={{ span: 6 }}
       size={'small'}

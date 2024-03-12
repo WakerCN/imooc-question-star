@@ -19,6 +19,8 @@ module.exports = [
               fe_id: Random.id(),
               baseType: "title",
               title: "标题1",
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: "问卷调查",
                 level: 1,
@@ -29,6 +31,8 @@ module.exports = [
               fe_id: Random.id(),
               baseType: "input",
               title: "输入框1",
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: "你的姓名",
                 placeholder: "请输入姓名"
@@ -38,6 +42,8 @@ module.exports = [
               fe_id: Random.id(),
               baseType: "input",
               title: "输入框2",
+              isHidden: false,
+              isLocked: false,
               props: {
                 title: "你的电话",
                 placeholder: "请输入电话"

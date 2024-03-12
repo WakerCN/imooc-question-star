@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:51
- * @LastEditTime : 2024-03-11 15:32
+ * @LastEditTime : 2024-03-12 15:29
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -22,7 +22,7 @@ export const RightPane: React.FC<Props> = () => {
   const parentRef = React.useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
 
-  const { rightPaneActiveKey, selectedId } = useGetQuestionDetail();
+  const { rightPaneActiveKey } = useGetQuestionDetail();
   const { setRightPaneActiveKey } = questionSlice.actions;
 
   const items: TabsProps['items'] = [
@@ -31,18 +31,17 @@ export const RightPane: React.FC<Props> = () => {
       label: (
         <>
           <SettingOutlined style={{ marginInlineEnd: 6 }} />
-          <span>全局设置</span>
+          <span style={{ userSelect: 'none' }}>全局设置</span>
         </>
       ),
       children: <div>全局设置</div>
     },
     {
       key: 'attributes',
-      disabled: !selectedId,
       label: (
         <>
           <SnippetsOutlined style={{ marginInlineEnd: 6 }} />
-          <span>属性</span>
+          <span style={{ userSelect: 'none' }}>属性</span>
         </>
       ),
       children: <AttributePane />

@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-11 14:23
- * @LastEditTime : 2024-03-11 18:00
+ * @LastEditTime : 2024-03-12 15:35
  * @LastEditors  : Waker
  * @Description  : 属性面板
  */
@@ -9,7 +9,7 @@ import { useGetQuestionDetail } from '@/hooks/question';
 import { useAppDispatch } from '@/hooks/redux';
 import { questionSlice } from '@/stores/question';
 import { getConfigByBaseType } from '@/widgets';
-import { Result } from 'antd';
+import { Empty } from 'antd';
 import React from 'react';
 import styles from './index.module.scss';
 
@@ -35,6 +35,7 @@ export const AttributePane: React.FC<AttributePaneProps> = () => {
       const { AttributeConfig } = config;
       return (
         <AttributeConfig
+          disabled={selectComponent.isLocked}
           value={selectComponent.props}
           onChange={(value) => handleFormChange(value, selectComponent.fe_id)}
         />
@@ -53,7 +54,18 @@ export const AttributePane: React.FC<AttributePaneProps> = () => {
           <div>{genAttributeForm()}</div>
         </div>
       ) : (
-        <Result title={'请先选中一个组件'} />
+        <Empty
+          style={{
+            height: '100%',
+            width: '100%',
+            margin: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+          description={'请先选中一个组件'}
+        />
       )}
     </div>
   );

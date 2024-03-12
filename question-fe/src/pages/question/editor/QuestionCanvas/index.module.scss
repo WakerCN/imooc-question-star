@@ -26,6 +26,11 @@
         border-color: #f4801a;
       }
 
+      &.locked {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
       > .mask-wrap {
         pointer-events: none;
         user-select: none;

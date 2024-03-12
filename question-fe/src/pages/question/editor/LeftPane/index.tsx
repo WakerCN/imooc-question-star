@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:53
- * @LastEditTime : 2024-03-11 10:07
+ * @LastEditTime : 2024-03-12 14:22
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -23,7 +23,7 @@ export const LeftPane: React.FC<Props> = () => {
       label: (
         <>
           <AppstoreOutlined style={{ marginInlineEnd: 6 }} />
-          <span>组件</span>
+          <span style={{ userSelect: 'none' }}>组件</span>
         </>
       ),
       children: <WidgetLibPane />
@@ -33,7 +33,7 @@ export const LeftPane: React.FC<Props> = () => {
       label: (
         <>
           <BarsOutlined style={{ marginInlineEnd: 6 }} />
-          <span>图层</span>
+          <span style={{ userSelect: 'none' }}>图层</span>
         </>
       ),
       children: <div>图层</div>

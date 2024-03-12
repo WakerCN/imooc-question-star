@@ -32,6 +32,8 @@ export interface WidgetInfo {
   fe_id: string;
   baseType: WidgetBaseType;
   title: string;
+  isHidden: boolean;
+  isLocked: boolean;
   props: WidgetProps;
 }
 
@@ -40,8 +42,13 @@ export interface WidgetConfig {
   name: string;
   baseType: WidgetBaseType;
   Component: FC<WidgetProps>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  AttributeConfig: FC<{ value: any; onChange?: (value: any) => void }>;
+  AttributeConfig: FC<{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onChange?: (value: any) => void;
+    disabled?: boolean;
+  }>;
   defaultProps: WidgetProps;
 }
 
