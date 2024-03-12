@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:57
- * @LastEditTime : 2024-03-12 14:45
+ * @LastEditTime : 2024-03-12 16:55
  * @LastEditors  : Waker
  * @Description  : 画布
  */
@@ -12,6 +12,7 @@ import { WidgetInfo, getConfigByBaseType } from '@/widgets';
 import cx from 'classnames';
 import React from 'react';
 import styles from './index.module.scss';
+import { useKeyboardShortcuts } from '@/hooks/keyboard';
 
 interface Props {}
 
@@ -27,6 +28,8 @@ const genateCompoenent = (info: WidgetInfo) => {
 };
 
 export const QuestionCanvas: React.FC<Props> = () => {
+  useKeyboardShortcuts();
+
   const { widgetList, selectedId } = useGetQuestionDetail();
   const dispatch = useAppDispatch();
   const { setSelectedId } = questionSlice.actions;

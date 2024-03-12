@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 16:59
- * @LastEditTime : 2024-03-12 15:11
+ * @LastEditTime : 2024-03-12 17:39
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -129,6 +129,30 @@ export const questionSlice = createSlice({
       if (!copiedWidget) return;
       copiedWidget.fe_id = nanoid(18);
       addWidgetToList(draft, copiedWidget);
+    }),
+    selectPrev: produce((draft: QuestionEditorState) => {
+      const { selectedId } = draft;
+      if (!draft.widgetList.length) return;
+      const index = draft.widgetList.findIndex((w) => w.fe_id === selectedId);
+      if (index <= 0) {
+        draft.selectedId = draft.widgetList[0].fe_id;
+        return;
+      } else {
+        draft.selectedId = draft.widgetList[index - 1].fe_id;
+      }
+    }),
+    selectNext: produce((draft: QuestionEditorState) => {
+      const { selectedId } = draft;
+      if (!draft.widgetList.length) return;
+      const index = draft.widgetList.findIndex((w) => w.fe_id === selectedId);
+      if (index === -1) {
+        draft.selectedId = draft.widgetList[0].fe_id;
+        return;
+      }
+      if (index === draft.widgetList.length - 1) {
+        return;
+      }
+      draft.selectedId = draft.widgetList[index + 1].fe_id;
     })
   }
 });
