@@ -10,4 +10,5 @@ echo -e "${BLUE}[husky] commit-msg hooks${RES}"
 
 cd question-fe
 
+echo -e "${BLUE}[commit-msg] 开始校验 commit msg 格式${RES}"
 npx --no -- commitlint --edit \
