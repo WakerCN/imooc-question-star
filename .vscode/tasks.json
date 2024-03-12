@@ -45,6 +45,15 @@
       "detail": "npm run commit",
       "icon": { "color": "terminal.ansiYellow", "id": "git-branch" },
       "problemMatcher": []
+    },
+    {
+      "label": "git commit & push",
+      "type": "shell",
+      "command": "git push",
+      "detail": "git 提交与推送",
+      "icon": { "color": "terminal.ansiYellow", "id": "git-branch" },
+      "dependsOn": ["git commit"],
+      "problemMatcher": []
     }
   ]
 }
