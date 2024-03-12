@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 16:59
- * @LastEditTime : 2024-03-12 17:39
+ * @LastEditTime : 2024-03-12 17:46
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -131,28 +131,30 @@ export const questionSlice = createSlice({
       addWidgetToList(draft, copiedWidget);
     }),
     selectPrev: produce((draft: QuestionEditorState) => {
-      const { selectedId } = draft;
-      if (!draft.widgetList.length) return;
-      const index = draft.widgetList.findIndex((w) => w.fe_id === selectedId);
+      const { selectedId, widgetList } = draft;
+      const visiableWidgetList = widgetList.filter((w) => !w.isHidden);
+      if (!visiableWidgetList.length) return;
+      const index = visiableWidgetList.findIndex((w) => w.fe_id === selectedId);
       if (index <= 0) {
-        draft.selectedId = draft.widgetList[0].fe_id;
+        draft.selectedId = visiableWidgetList[0].fe_id;
         return;
       } else {
-        draft.selectedId = draft.widgetList[index - 1].fe_id;
+        draft.selectedId = visiableWidgetList[index - 1].fe_id;
       }
     }),
     selectNext: produce((draft: QuestionEditorState) => {
-      const { selectedId } = draft;
-      if (!draft.widgetList.length) return;
-      const index = draft.widgetList.findIndex((w) => w.fe_id === selectedId);
+      const { selectedId, widgetList } = draft;
+      const visiableWidgetList = widgetList.filter((w) => !w.isHidden);
+      if (!visiableWidgetList.length) return;
+      const index = visiableWidgetList.findIndex((w) => w.fe_id === selectedId);
       if (index === -1) {
-        draft.selectedId = draft.widgetList[0].fe_id;
+        draft.selectedId = visiableWidgetList[0].fe_id;
         return;
       }
-      if (index === draft.widgetList.length - 1) {
+      if (index === visiableWidgetList.length - 1) {
         return;
       }
-      draft.selectedId = draft.widgetList[index + 1].fe_id;
+      draft.selectedId = visiableWidgetList[index + 1].fe_id;
     })
   }
 });
