@@ -1,6 +1,43 @@
 {
   "version": "2.0.0",
   "tasks": [
+    /* install app
+    =========================================== */
+    {
+      "label": "install project dependencies",
+      "dependsOrder": "parallel",
+      "problemMatcher": [],
+      "dependsOn": [
+        "install study demo",
+        "install question-fe",
+        "install question-be-mock"
+      ],
+      "icon": { "id": "list-tree", "color": "terminal.ansiCyan" }
+    },
+    {
+      "label": "install study demo",
+      "type": "shell",
+      "options": { "cwd": "study-demo" },
+      "command": "npm install",
+      "icon": { "id": "list-tree", "color": "terminal.ansiCyan" }
+    },
+    {
+      "label": "install question-fe",
+      "type": "shell",
+      "options": { "cwd": "question-fe" },
+      "command": "npm install",
+      "icon": { "id": "list-tree", "color": "terminal.ansiCyan" }
+    },
+    {
+      "label": "install question-be-mock",
+      "type": "shell",
+      "options": { "cwd": "question-be-mock" },
+      "command": "npm install",
+      "icon": { "id": "list-tree", "color": "terminal.ansiCyan" }
+    },
+
+    /* 启动app
+    =========================================== */
     {
       "label": "start app",
       "dependsOrder": "parallel",
