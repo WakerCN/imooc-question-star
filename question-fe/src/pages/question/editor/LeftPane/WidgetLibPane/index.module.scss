@@ -8,4 +8,10 @@
   @include flex-center();
   cursor: pointer;
   user-select: none;
+  display: flex;
+
+  .title {
+    width: 81px;
+    text-align: center;
+  }
 }

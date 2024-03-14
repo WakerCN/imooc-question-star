@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-12 16:45
- * @LastEditTime : 2024-03-12 17:39
+ * @LastEditTime : 2024-03-13 16:13
  * @LastEditors  : Waker
  * @Description  : 键盘快捷键
  */
@@ -12,7 +12,7 @@ import { useGetQuestionDetail } from './question';
 import { useAppDispatch } from './redux';
 
 export const isActiveVaild = () => {
-  if (document.activeElement?.tagName === 'INPUT') {
+  if (['TEXTAREA', 'INPUT'].includes(document.activeElement?.tagName || '')) {
     return false;
   }
   return true;

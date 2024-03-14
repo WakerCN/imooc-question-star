@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-11 14:23
- * @LastEditTime : 2024-03-12 15:35
+ * @LastEditTime : 2024-03-13 17:00
  * @LastEditors  : Waker
  * @Description  : 属性面板
  */
@@ -9,9 +9,10 @@ import { useGetQuestionDetail } from '@/hooks/question';
 import { useAppDispatch } from '@/hooks/redux';
 import { questionSlice } from '@/stores/question';
 import { getConfigByBaseType } from '@/widgets';
-import { Empty } from 'antd';
+import { Empty, Flex, Typography } from 'antd';
 import React from 'react';
 import styles from './index.module.scss';
+import { HBIcon } from '@/components/HBIcon';
 
 interface AttributePaneProps {}
 
@@ -47,9 +48,21 @@ export const AttributePane: React.FC<AttributePaneProps> = () => {
     <div className={styles['attr-pane']}>
       {selectComponent ? (
         <div>
-          <div className={styles['header']}>
-            {selectComponent.fe_id} -- {selectComponent.baseType} --
-            {selectComponent.title}
+          <div className={styles['info-card']}>
+            <HBIcon
+              iconKey={selectComponent.baseType}
+              size={24}
+              style={{ marginRight: 10 }}
+            />
+            <Flex justify="space-between" style={{ width: 356 }}>
+              <Typography.Text>{selectComponent.title}</Typography.Text>
+              <Typography.Text>
+                {'ID: '}
+                <Typography.Text type="secondary" copyable>
+                  {selectComponent.fe_id}
+                </Typography.Text>
+              </Typography.Text>
+            </Flex>
           </div>
           <div>{genAttributeForm()}</div>
         </div>

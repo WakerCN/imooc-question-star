@@ -1,7 +1,12 @@
 .attr-pane {
   width: 100%;
 
-  .header {
+  .info-card {
     margin-bottom: 10px;
+    @include forsted-glass();
+    background: rgba($color: #ffffff, $alpha: 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    @include flex-center(flex-start);
   }
 }

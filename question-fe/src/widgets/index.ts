@@ -1,13 +1,13 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 16:32
- * @LastEditTime : 2024-03-11 17:44
+ * @LastEditTime : 2024-03-13 16:53
  * @LastEditors  : Waker
  * @Description  : widget 组件入口文件
  */
 
 import { FC } from 'react';
-import QuestionInputConfig from './QuestionInput';
+import QuestionInputConfig, { QuestionTextAreaConfig } from './QuestionInput';
 import { QuestionInputProps } from './QuestionInput/interface';
 import {
   QuestionTitleConfig,
@@ -16,17 +16,23 @@ import {
   QuestionTitleLevel3Config
 } from './QuestionTitle';
 import { QuestionTitleProps } from './QuestionTitle/interface';
+import { QuestionParagraphProps } from './QuestionParagraph/interface';
+import { QuestionParagraphConfig } from './QuestionParagraph';
+import _ from 'lodash';
 
 export type WidgetType = 'title1' | 'title2' | 'title3' | 'input';
 
 export type WidgetBaseType =
   | 'title'
+  | 'paragraph'
   | 'input'
   | 'radio'
   | 'checkbox'
   | 'select';
 
-export type WidgetProps = QuestionTitleProps | QuestionInputProps;
+export type WidgetProps = QuestionTitleProps &
+  QuestionInputProps &
+  QuestionParagraphProps;
 
 export interface WidgetInfo {
   fe_id: string;
@@ -41,6 +47,7 @@ export interface WidgetConfig {
   /** 组件中文名 */
   name: string;
   baseType: WidgetBaseType;
+  iconKey: string;
   Component: FC<WidgetProps>;
   AttributeConfig: FC<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,15 +62,8 @@ export interface WidgetConfig {
 /** 基本类型配置 */
 export const widgetBaseConfigList: WidgetConfig[] = [
   QuestionTitleConfig,
-  QuestionInputConfig
-];
-
-/** 所有组件配置 */
-export const widgetConfigList: WidgetConfig[] = [
-  QuestionTitleLevel1Config,
-  QuestionTitleLevel2Config,
-  QuestionTitleLevel3Config,
-  QuestionInputConfig
+  QuestionInputConfig,
+  QuestionParagraphConfig
 ];
 
 /** 根据组件类型获取组件基本类型的config */
@@ -76,7 +76,7 @@ export const getLibConfigByName = (name: string) => {
   return widgetConfigList.find((item) => item.name === name);
 };
 
-export type WidgetLibCategory = 'title' | 'input';
+export type WidgetLibCategory = 'text' | 'input';
 
 /** 组件库信息 */
 export interface WidgetLibGroup {
@@ -88,17 +88,27 @@ export interface WidgetLibGroup {
 /** 组件库分组对象 */
 export const widgetLibGroup: WidgetLibGroup[] = [
   {
-    key: 'title',
-    title: '标题',
+    key: 'text',
+    title: '文本显示',
     components: [
       QuestionTitleLevel1Config,
       QuestionTitleLevel2Config,
-      QuestionTitleLevel3Config
+      QuestionTitleLevel3Config,
+      QuestionParagraphConfig
     ]
   },
   {
     key: 'input',
-    title: '输入',
-    components: [QuestionInputConfig]
+    title: '用户输入',
+    components: [QuestionInputConfig, QuestionTextAreaConfig]
   }
 ];
+
+/** 所有组件配置 */
+export const widgetConfigList: WidgetConfig[] = _.reduce(
+  widgetLibGroup,
+  (prev, curr) => {
+    return prev.concat(...curr.components);
+  },
+  [] as WidgetConfig[]
+);

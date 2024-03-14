@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:51
- * @LastEditTime : 2024-03-12 15:29
+ * @LastEditTime : 2024-03-13 14:41
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -12,7 +12,7 @@ import { HBTabs } from '@/components/HBTabs';
 import { useGetQuestionDetail } from '@/hooks/question';
 import { useAppDispatch } from '@/hooks/redux';
 import { questionSlice } from '@/stores/question';
-import { SettingOutlined, SnippetsOutlined } from '@ant-design/icons';
+import { BgColorsOutlined, SettingOutlined } from '@ant-design/icons';
 import React from 'react';
 import { AttributePane } from './AttributePane';
 
@@ -40,7 +40,7 @@ export const RightPane: React.FC<Props> = () => {
       key: 'attributes',
       label: (
         <>
-          <SnippetsOutlined style={{ marginInlineEnd: 6 }} />
+          <BgColorsOutlined style={{ marginInlineEnd: 6 }} />
           <span style={{ userSelect: 'none' }}>属性</span>
         </>
       ),

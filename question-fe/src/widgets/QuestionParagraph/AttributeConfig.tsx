@@ -1,9 +1,9 @@
 /*
  * @Author       : 魏威
- * @Date         : 2024-03-11 16:48
- * @LastEditTime : 2024-03-13 15:33
+ * @Date         : 2024-03-13 15:51
+ * @LastEditTime : 2024-03-13 16:28
  * @LastEditors  : Waker
- * @Description  : input属性配置
+ * @Description  :
  */
 import { Checkbox, Form, FormProps, Input } from 'antd';
 import { useEffect } from 'react';
@@ -31,14 +31,15 @@ export const AttributeConfig: WidgetConfig['AttributeConfig'] = (props) => {
       labelCol={{ span: 6 }}
       onValuesChange={onValuesChange}
     >
-      <Form.Item name={'title'} label="标题">
-        <Input />
+      <Form.Item
+        name={'text'}
+        label="段落内容"
+        rules={[{ required: true, message: '段落内容不能为空' }]}
+      >
+        <Input.TextArea rows={5} placeholder="请输入段落内容" />
       </Form.Item>
-      <Form.Item name={'placeholder'} label="placeholder">
-        <Input />
-      </Form.Item>
-      <Form.Item name={'isTextArea'} valuePropName="checked">
-        <Checkbox>多行输入</Checkbox>
+      <Form.Item name={'isCenter'} valuePropName="checked">
+        <Checkbox>是否居中</Checkbox>
       </Form.Item>
     </Form>
   );

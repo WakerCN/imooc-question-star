@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 16:59
- * @LastEditTime : 2024-03-12 17:46
+ * @LastEditTime : 2024-03-13 17:40
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -33,7 +33,7 @@ export const editInitialState: QuestionEditorState = {
   widgetList: [],
   selectedId: null,
   copiedWidget: null,
-  rightPaneActiveKey: 'settings'
+  rightPaneActiveKey: 'attributes'
 };
 
 export const questionSlice = createSlice({

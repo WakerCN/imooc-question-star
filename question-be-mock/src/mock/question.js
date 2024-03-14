@@ -29,6 +29,17 @@ module.exports = [
             },
             {
               fe_id: Random.id(),
+              baseType: "paragraph",
+              title: "段落1",
+              isHidden: false,
+              isLocked: false,
+              props: {
+                text: "员工基本信息调查问卷",
+                isCenter: true
+              }
+            },
+            {
+              fe_id: Random.id(),
               baseType: "input",
               title: "输入框1",
               isHidden: false,

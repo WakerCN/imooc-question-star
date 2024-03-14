@@ -10,7 +10,10 @@ import { Input, Typography } from 'antd';
 import { QuestionInputProps, questionInputDefaultProps } from './interface';
 
 export const QuestionInput: React.FC<QuestionInputProps> = (props) => {
-  const { title, placeholder } = { ...questionInputDefaultProps, ...props };
+  const { title, placeholder, isTextArea } = {
+    ...questionInputDefaultProps,
+    ...props
+  };
 
   return (
     <div>
@@ -18,7 +21,11 @@ export const QuestionInput: React.FC<QuestionInputProps> = (props) => {
         <Typography.Text strong>{title}</Typography.Text>
       </div>
       <div>
-        <Input placeholder={placeholder} />
+        {isTextArea ? (
+          <Input.TextArea placeholder={placeholder} />
+        ) : (
+          <Input placeholder={placeholder} />
+        )}
       </div>
     </div>
   );

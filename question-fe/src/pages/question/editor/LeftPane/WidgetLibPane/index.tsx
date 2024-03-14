@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-08 13:41
- * @LastEditTime : 2024-03-12 15:43
+ * @LastEditTime : 2024-03-13 15:19
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -13,6 +13,7 @@ import { Col, CollapseProps, Row } from 'antd';
 import React from 'react';
 import styles from './index.module.scss';
 import { nanoid } from 'nanoid';
+import { HBIcon } from '@/components/HBIcon';
 
 interface Props {}
 
@@ -49,7 +50,12 @@ export const WidgetLibPane: React.FC<Props> = () => {
                 className={styles['widget-item']}
                 onDoubleClick={() => handleAdd(comp)}
               >
-                {comp.name}
+                <HBIcon
+                  iconKey={comp.iconKey}
+                  size={24}
+                  style={{ margin: 8 }}
+                />
+                <div className={styles['title']}>{comp.name}</div>
               </div>
             </Col>
           );
