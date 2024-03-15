@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4464752 */
-  src: url('iconfont.woff2?t=1710321964217') format('woff2'),
-       url('iconfont.woff?t=1710321964217') format('woff'),
-       url('iconfont.ttf?t=1710321964217') format('truetype');
+  src: url('iconfont.woff2?t=1710402868686') format('woff2'),
+       url('iconfont.woff?t=1710402868686') format('woff'),
+       url('iconfont.ttf?t=1710402868686') format('truetype');
 }
 
 .iconfont {
@@ -33,11 +33,7 @@
   content: "\e88a";
 }
 
-.icon-lib-input-copy:before {
-  content: "\e88b";
-}
-
-.icon-baseType-input:before {
+.icon-lib-input:before {
   content: "\e604";
 }
 
@@ -85,7 +81,7 @@
   content: "\e721";
 }
 
-.icon-select:before {
+.icon-lib-select:before {
   content: "\e722";
 }
 
@@ -105,7 +101,7 @@
   content: "\e726";
 }
 
-.icon-select-muti:before {
+.icon-lib-select-muti:before {
   content: "\e727";
 }
 

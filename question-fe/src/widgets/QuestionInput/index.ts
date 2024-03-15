@@ -1,19 +1,19 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 14:37
- * @LastEditTime : 2024-03-13 17:35
+ * @LastEditTime : 2024-03-14 17:26
  * @LastEditors  : Waker
  * @Description  :
  */
 import { WidgetConfig } from '..';
+import { AttributeConfig } from './AttributeConfig';
 import QuestionInput from './Component';
 import { questionInputDefaultProps } from './interface';
-import { AttributeConfig } from './AttributeConfig';
 
 export const QuestionInputConfig: WidgetConfig = {
   name: '单行输入',
   baseType: 'input',
-  iconKey: 'baseType-input',
+  iconKey: 'lib-input',
   Component: QuestionInput,
   AttributeConfig,
   defaultProps: questionInputDefaultProps

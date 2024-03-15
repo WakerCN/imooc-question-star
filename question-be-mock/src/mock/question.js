@@ -51,6 +51,22 @@ module.exports = [
             },
             {
               fe_id: Random.id(),
+              baseType: "radio",
+              title: "单选框1",
+              isHidden: false,
+              isLocked: false,
+              props: {
+                title: "你的性别",
+                list: [
+                  { label: "男♂", value: "男♂" },
+                  { label: "女♀", value: "女♀" }
+                ],
+                defaultValue: null,
+                isVertical: false
+              }
+            },
+            {
+              fe_id: Random.id(),
               baseType: "input",
               title: "输入框2",
               isHidden: false,

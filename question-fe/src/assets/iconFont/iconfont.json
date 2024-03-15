@@ -41,16 +41,9 @@
       "unicode_decimal": 59530
     },
     {
-      "icon_id": "39538899",
-      "name": "input",
-      "font_class": "lib-input-copy",
-      "unicode": "e88b",
-      "unicode_decimal": 59531
-    },
-    {
       "icon_id": "18727200",
       "name": "input",
-      "font_class": "baseType-input",
+      "font_class": "lib-input",
       "unicode": "e604",
       "unicode_decimal": 58884
     },
@@ -134,7 +127,7 @@
     {
       "icon_id": "34984984",
       "name": "下拉",
-      "font_class": "select",
+      "font_class": "lib-select",
       "unicode": "e722",
       "unicode_decimal": 59170
     },
@@ -169,7 +162,7 @@
     {
       "icon_id": "34984993",
       "name": "下拉多选",
-      "font_class": "select-muti",
+      "font_class": "lib-select-muti",
       "unicode": "e727",
       "unicode_decimal": 59175
     },

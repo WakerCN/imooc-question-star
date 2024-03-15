@@ -1,14 +1,18 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 16:32
- * @LastEditTime : 2024-03-13 16:53
+ * @LastEditTime : 2024-03-14 17:26
  * @LastEditors  : Waker
  * @Description  : widget 组件入口文件
  */
 
+import _ from 'lodash';
 import { FC } from 'react';
 import QuestionInputConfig, { QuestionTextAreaConfig } from './QuestionInput';
 import { QuestionInputProps } from './QuestionInput/interface';
+import { QuestionParagraphConfig } from './QuestionParagraph';
+import { QuestionParagraphProps } from './QuestionParagraph/interface';
+import QuestionRadioConfig from './QuestionRadio';
 import {
   QuestionTitleConfig,
   QuestionTitleLevel1Config,
@@ -16,9 +20,6 @@ import {
   QuestionTitleLevel3Config
 } from './QuestionTitle';
 import { QuestionTitleProps } from './QuestionTitle/interface';
-import { QuestionParagraphProps } from './QuestionParagraph/interface';
-import { QuestionParagraphConfig } from './QuestionParagraph';
-import _ from 'lodash';
 
 export type WidgetType = 'title1' | 'title2' | 'title3' | 'input';
 
@@ -63,7 +64,8 @@ export interface WidgetConfig {
 export const widgetBaseConfigList: WidgetConfig[] = [
   QuestionTitleConfig,
   QuestionInputConfig,
-  QuestionParagraphConfig
+  QuestionParagraphConfig,
+  QuestionRadioConfig
 ];
 
 /** 根据组件类型获取组件基本类型的config */
@@ -76,7 +78,7 @@ export const getLibConfigByName = (name: string) => {
   return widgetConfigList.find((item) => item.name === name);
 };
 
-export type WidgetLibCategory = 'text' | 'input';
+export type WidgetLibCategory = 'text' | 'input' | 'select';
 
 /** 组件库信息 */
 export interface WidgetLibGroup {
@@ -101,6 +103,11 @@ export const widgetLibGroup: WidgetLibGroup[] = [
     key: 'input',
     title: '用户输入',
     components: [QuestionInputConfig, QuestionTextAreaConfig]
+  },
+  {
+    key: 'select',
+    title: '用户选择',
+    components: [QuestionRadioConfig]
   }
 ];
 
@@ -112,3 +119,17 @@ export const widgetConfigList: WidgetConfig[] = _.reduce(
   },
   [] as WidgetConfig[]
 );
+
+/** 根据basetype 获取对应iconKey */
+export const getBaseTypeIconKey = (baseType: WidgetBaseType) => {
+  return (
+    {
+      title: 'baseType-title',
+      paragraph: 'lib-paragraph',
+      input: 'lib-input',
+      radio: 'lib-radio',
+      select: 'baseType-select',
+      checkbox: 'baseType-checkbox'
+    }?.[baseType] || 'baseType-title'
+  );
+};

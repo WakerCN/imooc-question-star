@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 16:59
- * @LastEditTime : 2024-03-13 17:40
+ * @LastEditTime : 2024-03-14 17:52
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -194,4 +194,5 @@ export const addWidgetToList = (
     draft.widgetList.push(widget);
   }
   draft.selectedId = widget.fe_id;
+  draft.rightPaneActiveKey = 'attributes';
 };
