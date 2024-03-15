@@ -11,7 +11,7 @@
     padding: 10px;
     overflow: auto;
 
-    > .widget-wrap {
+    .widget-wrap {
       border: 2px solid transparent;
       padding: 8px;
       margin-bottom: 10px;
@@ -34,6 +34,20 @@
       > .mask-wrap {
         pointer-events: none;
         user-select: none;
+      }
+    }
+
+    .widget-drop-wrap {
+      position: relative;
+
+      .drop-point {
+        position: absolute;
+        background: palevioletred;
+        // width: 94%;
+        width: 100%;
+        height: 2px;
+        bottom: -6px;
+        // left: 3%;
       }
     }
   }

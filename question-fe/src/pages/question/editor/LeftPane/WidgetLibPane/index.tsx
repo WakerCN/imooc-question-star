@@ -6,38 +6,14 @@
  * @Description  :
  */
 import { HBCollapse } from '@/components/HBCollapse';
-import { useAppDispatch } from '@/hooks/redux';
-import { questionSlice } from '@/stores/question';
-import { WidgetConfig, getLibConfigByName, widgetLibGroup } from '@/widgets';
+import { widgetLibGroup } from '@/widgets';
 import { Col, CollapseProps, Row } from 'antd';
 import React from 'react';
-import styles from './index.module.scss';
-import { nanoid } from 'nanoid';
-import { HBIcon } from '@/components/HBIcon';
+import { WidgetItem } from './WidgetItem';
 
 interface Props {}
 
 export const WidgetLibPane: React.FC<Props> = () => {
-  const dispatch = useAppDispatch();
-  const { addWidget } = questionSlice.actions;
-
-  const handleAdd = (config: WidgetConfig) => {
-    const compConfig = getLibConfigByName(config.name);
-    if (compConfig) {
-      const { defaultProps, baseType, name } = compConfig;
-      dispatch(
-        addWidget({
-          fe_id: nanoid(18),
-          title: name,
-          isHidden: false,
-          isLocked: false,
-          baseType,
-          props: defaultProps
-        })
-      );
-    }
-  };
-
   const items: CollapseProps['items'] = widgetLibGroup.map((group) => ({
     key: group.key,
     label: group.title,
@@ -46,17 +22,7 @@ export const WidgetLibPane: React.FC<Props> = () => {
         {group.components.map((comp) => {
           return (
             <Col span={12} key={comp.name}>
-              <div
-                className={styles['widget-item']}
-                onDoubleClick={() => handleAdd(comp)}
-              >
-                <HBIcon
-                  iconKey={comp.iconKey}
-                  size={24}
-                  style={{ margin: 8 }}
-                />
-                <div className={styles['title']}>{comp.name}</div>
-              </div>
+              <WidgetItem data={comp} />
             </Col>
           );
         })}

@@ -9,6 +9,15 @@
   cursor: pointer;
   user-select: none;
   display: flex;
+  &:hover {
+    background: #ffe6bf;
+  }
+
+  &.overlay {
+    border-color: transparent;
+    background: #ffe6bf;
+    opacity: 0.7;
+  }
 
   .title {
     width: 81px;
