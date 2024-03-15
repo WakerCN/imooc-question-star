@@ -1,19 +1,18 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 17:13
- * @LastEditTime : 2024-03-15 10:19
+ * @LastEditTime : 2024-03-15 10:18
  * @LastEditors  : Waker
  * @Description  :
  */
 
-import { Flex, Radio, Typography } from 'antd';
-import { QuestionRadioProps, questionRadioDefaultProps } from './interface';
+import { Checkbox, Flex, Radio, Typography } from 'antd';
+import { QuestionCheckBoxProps, questionRadioDefaultProps } from './interface';
 
-export const QuestionRadio: React.FC<QuestionRadioProps> = (props) => {
+export const QuestionRadio: React.FC<QuestionCheckBoxProps> = (props) => {
   const {
     title,
     list = [],
-    defaultValue,
     isVertical
   } = {
     ...questionRadioDefaultProps,
@@ -25,12 +24,12 @@ export const QuestionRadio: React.FC<QuestionRadioProps> = (props) => {
       <div>
         <Typography.Text strong>{title}</Typography.Text>
       </div>
-      <Radio.Group value={defaultValue}>
+      <Radio.Group>
         <Flex vertical={isVertical} wrap={'wrap'} gap={10}>
           {list.map((i) => (
-            <Radio key={i.value} value={i.value}>
+            <Checkbox key={i.value} checked={i.checked}>
               {i.label}
-            </Radio>
+            </Checkbox>
           ))}
         </Flex>
       </Radio.Group>

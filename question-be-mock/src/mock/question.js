@@ -34,7 +34,7 @@ module.exports = [
               isHidden: false,
               isLocked: false,
               props: {
-                text: "员工基本信息调查问卷",
+                text: "员工基本信息调查问卷\n发布者: 星一",
                 isCenter: true
               }
             },
@@ -45,8 +45,19 @@ module.exports = [
               isHidden: false,
               isLocked: false,
               props: {
-                title: "你的姓名",
+                title: "您的姓名",
                 placeholder: "请输入姓名"
+              }
+            },
+            {
+              fe_id: Random.id(),
+              baseType: "input",
+              title: "输入框2",
+              isHidden: false,
+              isLocked: false,
+              props: {
+                title: "您的电话",
+                placeholder: "请输入电话"
               }
             },
             {
@@ -56,7 +67,7 @@ module.exports = [
               isHidden: false,
               isLocked: false,
               props: {
-                title: "你的性别",
+                title: "您的性别",
                 list: [
                   { label: "男♂", value: "男♂" },
                   { label: "女♀", value: "女♀" }
@@ -67,13 +78,20 @@ module.exports = [
             },
             {
               fe_id: Random.id(),
-              baseType: "input",
-              title: "输入框2",
+              baseType: "checkbox",
+              title: "多选框1",
               isHidden: false,
               isLocked: false,
               props: {
-                title: "你的电话",
-                placeholder: "请输入电话"
+                title: "您的技术栈",
+                list: [
+                  { label: "React", value: "React", checked: false },
+                  { label: "Vue", value: "Vue", checked: false },
+                  { label: "Java", value: "Java", checked: false },
+                  { label: "Python", value: "Python", checked: false }
+                ],
+                defaultValue: null,
+                isVertical: false
               }
             }
           ]

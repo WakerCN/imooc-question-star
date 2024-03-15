@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 16:32
- * @LastEditTime : 2024-03-14 17:26
+ * @LastEditTime : 2024-03-15 10:21
  * @LastEditors  : Waker
  * @Description  : widget 组件入口文件
  */
@@ -20,6 +20,9 @@ import {
   QuestionTitleLevel3Config
 } from './QuestionTitle';
 import { QuestionTitleProps } from './QuestionTitle/interface';
+import QuestionCheckBoxConfig from './QuestionCheckBox';
+import { QuestionRadioProps } from './QuestionRadio/interface';
+import { QuestionCheckBoxProps } from './QuestionCheckBox/interface';
 
 export type WidgetType = 'title1' | 'title2' | 'title3' | 'input';
 
@@ -31,9 +34,12 @@ export type WidgetBaseType =
   | 'checkbox'
   | 'select';
 
-export type WidgetProps = QuestionTitleProps &
-  QuestionInputProps &
-  QuestionParagraphProps;
+export type WidgetProps =
+  | QuestionTitleProps
+  | QuestionInputProps
+  | QuestionParagraphProps
+  | QuestionRadioProps
+  | QuestionCheckBoxProps;
 
 export interface WidgetInfo {
   fe_id: string;
@@ -65,7 +71,8 @@ export const widgetBaseConfigList: WidgetConfig[] = [
   QuestionTitleConfig,
   QuestionInputConfig,
   QuestionParagraphConfig,
-  QuestionRadioConfig
+  QuestionRadioConfig,
+  QuestionCheckBoxConfig
 ];
 
 /** 根据组件类型获取组件基本类型的config */
@@ -107,7 +114,7 @@ export const widgetLibGroup: WidgetLibGroup[] = [
   {
     key: 'select',
     title: '用户选择',
-    components: [QuestionRadioConfig]
+    components: [QuestionRadioConfig, QuestionCheckBoxConfig]
   }
 ];
 
@@ -129,7 +136,7 @@ export const getBaseTypeIconKey = (baseType: WidgetBaseType) => {
       input: 'lib-input',
       radio: 'lib-radio',
       select: 'baseType-select',
-      checkbox: 'baseType-checkbox'
+      checkbox: 'checkbox'
     }?.[baseType] || 'baseType-title'
   );
 };

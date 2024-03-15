@@ -5,7 +5,8 @@
  * @LastEditors  : Waker
  * @Description  :
  */
-import { WidgetConfig } from '..';
+import { FC } from 'react';
+import { WidgetConfig, WidgetProps } from '..';
 import { AttributeConfig } from './AttributeConfig.tsx';
 import { QuestionTitle } from './Component.tsx';
 import { questionTitleDefaultProps } from './interface.ts';
@@ -13,7 +14,7 @@ import { questionTitleDefaultProps } from './interface.ts';
 export const QuestionTitleConfig: WidgetConfig = {
   name: '标题',
   baseType: 'title',
-  Component: QuestionTitle,
+  Component: QuestionTitle as FC<WidgetProps>,
   iconKey: 'baseType-title',
   AttributeConfig,
   defaultProps: questionTitleDefaultProps

@@ -5,7 +5,8 @@
  * @LastEditors  : Waker
  * @Description  :
  */
-import { WidgetConfig } from '..';
+import { FC } from 'react';
+import { WidgetConfig, WidgetProps } from '..';
 import { AttributeConfig } from './AttributeConfig';
 import QuestionInput from './Component';
 import { questionInputDefaultProps } from './interface';
@@ -14,7 +15,7 @@ export const QuestionInputConfig: WidgetConfig = {
   name: '单行输入',
   baseType: 'input',
   iconKey: 'lib-input',
-  Component: QuestionInput,
+  Component: QuestionInput as FC<WidgetProps>,
   AttributeConfig,
   defaultProps: questionInputDefaultProps
 };

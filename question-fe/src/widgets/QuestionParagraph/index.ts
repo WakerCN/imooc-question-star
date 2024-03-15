@@ -5,7 +5,8 @@
  * @LastEditors  : Waker
  * @Description  :
  */
-import { WidgetConfig } from '..';
+import { FC } from 'react';
+import { WidgetConfig, WidgetProps } from '..';
 import { AttributeConfig } from './AttributeConfig';
 import { QuestionParagraph } from './Component';
 import { QuestionParagraphProps } from './interface';
@@ -19,7 +20,7 @@ export const QuestionParagraphConfig: WidgetConfig = {
   name: '段落',
   baseType: 'paragraph',
   iconKey: 'lib-paragraph',
-  Component: QuestionParagraph,
+  Component: QuestionParagraph as FC<WidgetProps>,
   defaultProps,
   AttributeConfig
 };
