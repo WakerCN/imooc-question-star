@@ -75,8 +75,6 @@ export const useKeyboardShortcuts = () => {
   /** 选中上一个 */
   useKeyPress('uparrow', () => {
     if (!isActiveVaild()) return;
-    console.log('uparrow');
-
     dispatch(selectPrev());
   });
 
