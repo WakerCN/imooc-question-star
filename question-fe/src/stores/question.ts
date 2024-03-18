@@ -56,6 +56,20 @@ export const questionSlice = createSlice({
         addWidgetToList(draft, action.payload);
       }
     ),
+    addWidgetById: produce(
+      (
+        draft: QuestionEditorState,
+        action: PayloadAction<{ id: string; widget: WidgetInfo }>
+      ) => {
+        const { id, widget } = action.payload;
+        if (id === 'canvas') {
+          draft.widgetList.push(widget);
+        } else {
+          const index = draft.widgetList.findIndex((item) => item.fe_id === id);
+          draft.widgetList.splice(index + 1, 0, widget);
+        }
+      }
+    ),
     setRightPaneActiveKey: produce(
       (
         draft: QuestionEditorState,

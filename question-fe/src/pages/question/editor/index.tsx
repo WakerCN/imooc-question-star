@@ -1,16 +1,19 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-02-06 11:09
- * @LastEditTime : 2024-03-15 17:10
+ * @LastEditTime : 2024-03-18 10:12
  * @LastEditors  : Waker
  * @Description  :
  */
 import { ErrorPage } from '@/components/ErrorPage';
 import { useTitle } from '@/hooks/common';
 import { useLoadQuestionDetail } from '@/hooks/question';
-import { getLibConfigByName } from '@/widgets';
+import { useAppDispatch } from '@/hooks/redux';
+import { questionSlice } from '@/stores/question';
+import { WidgetConfig, WidgetInfo, getLibConfigByName } from '@/widgets';
 import {
   DndContext,
+  DragEndEvent,
   DragOverlay,
   DragStartEvent,
   MouseSensor,
@@ -18,6 +21,7 @@ import {
   useSensors
 } from '@dnd-kit/core';
 import { Spin } from 'antd';
+import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { LeftPane } from './LeftPane';
@@ -35,6 +39,9 @@ export const QuestionEditor: React.FC<Props> = () => {
 
   const { loading, error } = useLoadQuestionDetail();
 
+  const dispatch = useAppDispatch();
+  const { addWidgetById } = questionSlice.actions;
+
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: { distance: 2 }
   });
@@ -47,7 +54,22 @@ export const QuestionEditor: React.FC<Props> = () => {
     setActiveId(event.active.id as string);
   }
 
-  function handleDragEnd() {
+  function handleDragEnd(event: DragEndEvent) {
+    const { over, active } = event;
+    if (over?.id) {
+      const {
+        data: { current: config }
+      } = active;
+      const newWidget: WidgetInfo = {
+        fe_id: nanoid(18),
+        title: (config as WidgetConfig).name,
+        isHidden: false,
+        isLocked: false,
+        baseType: (config as WidgetConfig).baseType,
+        props: (config as WidgetConfig).defaultProps
+      };
+      dispatch(addWidgetById({ id: over.id as string, widget: newWidget }));
+    }
     setActiveId(null);
   }
 

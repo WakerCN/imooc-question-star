@@ -10,6 +10,7 @@
     background: white;
     padding: 10px;
     overflow: auto;
+    position: relative;
 
     .widget-wrap {
       border: 2px solid transparent;
@@ -39,15 +40,31 @@
 
     .widget-drop-wrap {
       position: relative;
+    }
 
-      .drop-point {
+    .drop-point {
+      position: absolute;
+      background: palevioletred;
+      box-sizing: border-box;
+      width: 410px;
+      height: 2px;
+      // bottom: -6px;
+
+      &::before,
+      &::after {
+        content: '';
         position: absolute;
-        background: palevioletred;
-        // width: 94%;
-        width: 100%;
-        height: 2px;
-        bottom: -6px;
-        // left: 3%;
+        border: 4px solid transparent;
+        bottom: -3px;
+        z-index: 10;
+      }
+      &::before {
+        border-left: 4px solid palevioletred;
+        left: -4px;
+      }
+      &::after {
+        border-right: 4px solid palevioletred;
+        right: -4px;
       }
     }
   }

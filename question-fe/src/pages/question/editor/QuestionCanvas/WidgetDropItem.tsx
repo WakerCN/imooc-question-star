@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-15 17:19
- * @LastEditTime : 2024-03-15 18:00
+ * @LastEditTime : 2024-03-18 10:08
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -37,20 +37,9 @@ export const WidgetDropItem: React.FC<WidgetDropItem> = (props) => {
   const dispatch = useAppDispatch();
   const { setSelectedId } = questionSlice.actions;
 
-  const { setNodeRef, isOver, rect } = useDroppable({
+  const { setNodeRef, isOver } = useDroppable({
     id: fe_id
   });
-
-  if (data.title === '标题1') {
-    if (
-      rect.current?.top &&
-      (rect.current.height - 40) / 2 < rect.current.top
-    ) {
-      console.log('top');
-    } else {
-      console.log('bottom');
-    }
-  }
 
   const handleClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
