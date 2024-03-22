@@ -42,7 +42,7 @@
       "label": "start app",
       "dependsOrder": "parallel",
       "problemMatcher": [],
-      "dependsOn": ["start fe", "start mock server"],
+      "dependsOn": ["start mock server", "start fe"],
       "icon": { "color": "terminal.ansiYellow", "id": "chip" }
     },
     {

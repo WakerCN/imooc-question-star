@@ -12,43 +12,13 @@
     overflow: auto;
     position: relative;
 
-    .widget-wrap {
-      border: 2px solid transparent;
-      padding: 8px;
-      margin-bottom: 10px;
-      @include transition();
-      cursor: pointer;
-
-      &:hover {
-        border-color: #ffbb6e;
-      }
-
-      &.active {
-        border-color: #f4801a;
-      }
-
-      &.locked {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      > .mask-wrap {
-        pointer-events: none;
-        user-select: none;
-      }
-    }
-
-    .widget-drop-wrap {
-      position: relative;
-    }
-
     .drop-point {
       position: absolute;
       background: palevioletred;
       box-sizing: border-box;
       width: 410px;
       height: 2px;
-      // bottom: -6px;
+      bottom: -6px;
 
       &::before,
       &::after {
@@ -68,4 +38,62 @@
       }
     }
   }
+}
+
+.widget-wrap {
+  border: 2px solid transparent;
+  padding: 8px;
+  margin-bottom: 10px;
+  background: white;
+  @include transition();
+  cursor: pointer;
+
+  &:hover {
+    border-color: #ffbb6e;
+  }
+
+  &:global(.active) {
+    border-color: #f4801a;
+  }
+
+  &:global(.locked) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:global(.overlay) {
+    border-color: transparent;
+  }
+
+  &:global(.over) {
+    opacity: 0.5;
+  }
+
+  &:global(.dragging) {
+    opacity: 0.3;
+  }
+
+  > .mask-wrap {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.sort-item-widget {
+  position: relative;
+
+  .over-point {
+    position: absolute;
+    bottom: -5px;
+  }
+}
+
+.drag-handle-wrap {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: block;
+  background: pink;
+  z-index: 1;
+  transform: translateX();
 }

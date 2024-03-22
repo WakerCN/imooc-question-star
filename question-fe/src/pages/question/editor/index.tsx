@@ -1,17 +1,15 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-02-06 11:09
- * @LastEditTime : 2024-03-18 10:12
+ * @LastEditTime : 2024-03-22 14:33
  * @LastEditors  : Waker
  * @Description  :
  */
 import { ErrorPage } from '@/components/ErrorPage';
 import { useTitle } from '@/hooks/common';
 import { useLoadQuestionDetail } from '@/hooks/question';
-import { useAppDispatch } from '@/hooks/redux';
-import { questionSlice } from '@/stores/question';
-import { WidgetConfig, WidgetInfo, getLibConfigByName } from '@/widgets';
 import {
+  Active,
   DndContext,
   DragEndEvent,
   DragOverlay,
@@ -21,12 +19,12 @@ import {
   useSensors
 } from '@dnd-kit/core';
 import { Spin } from 'antd';
-import { nanoid } from 'nanoid';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { LeftPane } from './LeftPane';
-import { WidgetItem } from './LeftPane/WidgetLibPane/WidgetItem';
+import { LibBaseItem } from './LeftPane/WidgetLibPane/LibBaseItem';
 import { QuestionCanvas } from './QuestionCanvas';
+import { WidgetBaseItem } from './QuestionCanvas/WidgetBaseItem';
 import { RightPane } from './RightPane';
 import styles from './index.module.scss';
 
@@ -39,39 +37,41 @@ export const QuestionEditor: React.FC<Props> = () => {
 
   const { loading, error } = useLoadQuestionDetail();
 
-  const dispatch = useAppDispatch();
-  const { addWidgetById } = questionSlice.actions;
-
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: { distance: 2 }
   });
 
   const sensors = useSensors(mouseSensor);
 
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeObj, setActiveObj] = useState<Active | null>(null);
 
   function handleDragStart(event: DragStartEvent) {
-    setActiveId(event.active.id as string);
+    setActiveObj(event.active);
   }
 
   function handleDragEnd(event: DragEndEvent) {
+    setActiveObj(null);
     const { over, active } = event;
-    if (over?.id) {
-      const {
-        data: { current: config }
-      } = active;
-      const newWidget: WidgetInfo = {
-        fe_id: nanoid(18),
-        title: (config as WidgetConfig).name,
-        isHidden: false,
-        isLocked: false,
-        baseType: (config as WidgetConfig).baseType,
-        props: (config as WidgetConfig).defaultProps
-      };
-      dispatch(addWidgetById({ id: over.id as string, widget: newWidget }));
+    if (!over || !active) return;
+    const {
+      data: { current: overData }
+    } = over;
+    const {
+      data: { current: activeData }
+    } = active;
+    const { info: activeInfo, type: activeType } = activeData!;
+    const { info: overInfo, type: overType } = overData!;
+    if (overType === 'widget' && activeType === 'lib') {
+      console.log('add', activeInfo);
+      return;
     }
-    setActiveId(null);
+    if (activeType === 'widget' && overType === 'widget') {
+      console.log('move', overInfo);
+    }
   }
+
+  const isDragLib = activeObj?.data.current?.type === 'lib';
+  const isDragWidget = activeObj?.data.current?.type === 'widget';
 
   return (
     <div className={styles['editor-page']}>
@@ -89,9 +89,15 @@ export const QuestionEditor: React.FC<Props> = () => {
             <LeftPane />
             <QuestionCanvas />
             <RightPane />
-            {activeId && (
+            {/* 根据类型 渲染overlay */}
+            {activeObj && isDragLib && (
               <DragOverlay>
-                <WidgetItem isOverlay data={getLibConfigByName(activeId)!} />
+                <LibBaseItem info={activeObj.data.current?.info} isOverlay />
+              </DragOverlay>
+            )}
+            {activeObj && isDragWidget && (
+              <DragOverlay>
+                <WidgetBaseItem info={activeObj.data.current?.info} isOverlay />
               </DragOverlay>
             )}
           </DndContext>

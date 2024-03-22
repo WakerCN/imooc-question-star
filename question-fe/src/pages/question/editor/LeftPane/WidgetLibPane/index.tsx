@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-08 13:41
- * @LastEditTime : 2024-03-13 15:19
+ * @LastEditTime : 2024-03-22 14:12
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -9,7 +9,7 @@ import { HBCollapse } from '@/components/HBCollapse';
 import { widgetLibGroup } from '@/widgets';
 import { Col, CollapseProps, Row } from 'antd';
 import React from 'react';
-import { WidgetItem } from './WidgetItem';
+import { LibItem } from './LibItem';
 
 interface Props {}
 
@@ -22,7 +22,7 @@ export const WidgetLibPane: React.FC<Props> = () => {
         {group.components.map((comp) => {
           return (
             <Col span={12} key={comp.name}>
-              <WidgetItem data={comp} />
+              <LibItem info={comp} />
             </Col>
           );
         })}
