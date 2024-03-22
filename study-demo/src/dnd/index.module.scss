@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+.dnd {
+  background: paleturquoise;
+  height: 800px;
+  width: 800px;
+  display: flex;
+
+  .lib-pane {
+    width: 200px;
+    background: lightgoldenrodyellow;
+    padding: 20px;
+  }
+
+  .canvas {
+    width: 600px;
+    padding: 20px;
+    overflow-y: auto;
+
+    > :not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.lib-item {
+  height: 40px;
+  background: lightcoral;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+
+  .label {
+    padding: 4px 10px;
+    user-select: none;
+  }
+
+  &:global(.overlay) {
+    opacity: 0.8;
+  }
+
+  &:global(.dragging) {
+    opacity: 0.5;
+    cursor: grabbing;
+  }
+}
+
+.sort-item {
+  position: relative;
+  background: peachpuff;
+  height: 60px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  cursor: pointer;
+
+  // &:global(.over) {
+  // }
+
+  &:global(.overlay) {
+    opacity: 0.8;
+  }
+
+  &:global(.dragging) {
+    opacity: 0.5;
+    cursor: grabbing;
+  }
+
+  .over-point {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: peru;
+    bottom: -6px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      border: 4px solid transparent;
+    }
+
+    &::before {
+      left: -2px;
+      border-left: 4px solid peru;
+    }
+
+    &::after {
+      right: -2px;
+      border-right: 4px solid peru;
+    }
+  }
+}
