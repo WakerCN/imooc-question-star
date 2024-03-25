@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-12 16:45
- * @LastEditTime : 2024-03-13 16:13
+ * @LastEditTime : 2024-03-25 14:35
  * @LastEditors  : Waker
  * @Description  : 键盘快捷键
  */
@@ -73,13 +73,15 @@ export const useKeyboardShortcuts = () => {
   });
 
   /** 选中上一个 */
-  useKeyPress('uparrow', () => {
+  useKeyPress('uparrow', (event) => {
+    event.preventDefault();
     if (!isActiveVaild()) return;
     dispatch(selectPrev());
   });
 
   /** 选中下一个 */
-  useKeyPress('downarrow', () => {
+  useKeyPress('downarrow', (event) => {
+    event.preventDefault();
     if (!isActiveVaild()) return;
     dispatch(selectNext());
   });

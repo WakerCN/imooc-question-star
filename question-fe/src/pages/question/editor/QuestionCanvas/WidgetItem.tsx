@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-22 11:02
- * @LastEditTime : 2024-03-22 17:34
+ * @LastEditTime : 2024-03-25 15:03
  * @LastEditors  : Waker
  * @Description  : 带上拖拽功能的WidgetItem
  */
@@ -42,6 +42,11 @@ export const WidgetItem: React.FC<WidgetItemProps> = (props) => {
   };
 
   const isOverSelf = over?.id === fe_id;
+  const isAcitive = selectedId === info.fe_id;
+
+  // useEffect(() => {
+  //   sortRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // }, [isAcitive]);
 
   return (
     <div
@@ -57,7 +62,7 @@ export const WidgetItem: React.FC<WidgetItemProps> = (props) => {
     >
       <WidgetBaseItem
         info={info}
-        active={selectedId === info.fe_id}
+        active={isAcitive}
         isDragging={isDragging}
         isOvering={isOver}
       />

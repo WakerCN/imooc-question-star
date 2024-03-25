@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:53
- * @LastEditTime : 2024-03-12 14:22
+ * @LastEditTime : 2024-03-25 14:47
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -11,6 +11,7 @@ import { TabsProps } from 'antd';
 import React from 'react';
 import { WidgetLibPane } from './WidgetLibPane';
 import styles from './index.module.scss';
+import { LayerPane } from './LayerPane';
 
 interface Props {}
 
@@ -36,7 +37,7 @@ export const LeftPane: React.FC<Props> = () => {
           <span style={{ userSelect: 'none' }}>图层</span>
         </>
       ),
-      children: <div>图层</div>
+      children: <LayerPane />
     }
   ];
 

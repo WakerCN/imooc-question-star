@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-06 17:57
- * @LastEditTime : 2024-03-25 10:11
+ * @LastEditTime : 2024-03-25 14:24
  * @LastEditors  : Waker
  * @Description  : 画布
  */
@@ -10,10 +10,10 @@ import { useGetQuestionDetail } from '@/hooks/question';
 import { useAppDispatch } from '@/hooks/redux';
 import { questionSlice } from '@/stores/question';
 import { useDroppable } from '@dnd-kit/core';
+import { SortableContext } from '@dnd-kit/sortable';
 import React from 'react';
 import { WidgetItem } from './WidgetItem';
 import styles from './index.module.scss';
-import { SortableContext } from '@dnd-kit/sortable';
 
 interface Props {}
 
@@ -30,7 +30,7 @@ export const QuestionCanvas: React.FC<Props> = () => {
     dispatch(setSelectedId(null));
   };
 
-  const { setNodeRef } = useDroppable({ id: 'canvas' });
+  const { setNodeRef } = useDroppable({ id: 'canvas', data: {} });
 
   return (
     <div

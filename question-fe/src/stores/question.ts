@@ -130,6 +130,20 @@ export const questionSlice = createSlice({
         }
       }
     ),
+    modifyWidgetTitle: produce(
+      (
+        draft: QuestionEditorState,
+        action: PayloadAction<{ id: string; title: string }>
+      ) => {
+        const { id: targetId, title } = action.payload;
+        const targetComponent = draft.widgetList.find(
+          (w) => w.fe_id === targetId
+        );
+        if (targetComponent) {
+          targetComponent.title = title;
+        }
+      }
+    ),
     copyWidget: produce((draft: QuestionEditorState) => {
       const { selectedId } = draft;
       const copiedWidget = draft.widgetList.find((w) => w.fe_id === selectedId);

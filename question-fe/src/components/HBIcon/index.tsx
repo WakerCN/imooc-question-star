@@ -38,15 +38,18 @@ interface HBIconProps {
   classNames?: string;
   iconKey: HBIconKey;
   size?: number; // 单位px
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ref?: React.Ref<any>;
 }
 
 export const HBIcon: React.FC<HBIconProps> = (props) => {
-  const { iconKey, style, classNames, size } = props;
+  const { iconKey, style, classNames, size, ref } = props;
 
   const finalStyle = size ? { ...style, width: size, height: size } : style;
 
   return (
     <svg
+      ref={ref}
       className={cx(styles['hb-icon'], classNames)}
       style={finalStyle}
       aria-hidden="true"

@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-02-06 11:09
- * @LastEditTime : 2024-03-25 10:59
+ * @LastEditTime : 2024-03-25 13:47
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -77,6 +77,13 @@ export const QuestionEditor: React.FC<Props> = () => {
     } = active;
     const { info: activeInfo, type: activeType } = activeData!;
     const { info: overInfo, type: overType } = overData!;
+
+    /* 添加组件到画布
+    =========================================== */
+    if (overType === 'canvas' && activeType === 'lib') {
+      console.log('拖拽到画布');
+      return;
+    }
 
     /* 添加组件
     =========================================== */

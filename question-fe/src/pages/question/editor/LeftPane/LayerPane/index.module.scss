@@ -1,0 +1,32 @@
+.layer-pane {
+  width: 100%;
+  height: 100%;
+
+  .layer-item {
+    width: 100%;
+    padding: 4px;
+
+    &:global(.active) {
+      background: #ffe6bf;
+    }
+  }
+}
+
+.drag-handle {
+  height: 24px;
+  background: rgba($color: #000000, $alpha: 0.05);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  cursor: grab;
+
+  &:global(.dragging) {
+    z-index: 2;
+    background: #f4801a;
+    cursor: grabbing;
+  }
+
+  &:hover {
+    background: #f4801a;
+  }
+}
