@@ -6,11 +6,11 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "11835318",
-      "name": "drag-handle",
-      "font_class": "drag",
-      "unicode": "e622",
-      "unicode_decimal": 58914
+      "icon_id": "34485089",
+      "name": "拖拽",
+      "font_class": "drag-handle",
+      "unicode": "e603",
+      "unicode_decimal": 58883
     },
     {
       "icon_id": "18727228",

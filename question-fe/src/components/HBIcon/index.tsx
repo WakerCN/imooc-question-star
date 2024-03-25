@@ -4,31 +4,34 @@ import '@/assets/iconFont/iconfont.js';
 import cx from 'classnames';
 
 export type HBIconKey =
-  | 'paragraph'
-  | 'h1'
-  | 'h3'
-  | 'h2'
-  | 'radio-ok'
-  | 'radio'
+  | 'drag-handle'
+  | 'lib-rate'
+  | 'lib-slider'
+  | 'lib-textarea'
+  | 'star'
+  | 'lib-radio'
+  | 'lib-input'
+  | 'baseType-title'
+  | 'lib-paragraph'
+  | 'baseType-paragraph-copy'
+  | 'lib-h1'
+  | 'lib-h3'
+  | 'lib-h2'
   | 'locate'
   | 'divider'
-  | 'input'
-  | 'textarea'
-  | 'star'
   | 'qr-code'
   | 'link'
   | 'description'
-  | 'select'
+  | 'lib-select'
   | 'date'
   | 'time'
   | 'phone'
   | 'number'
-  | 'select-muti'
+  | 'lib-select-muti'
   | 'email'
   | 'checkbox'
   | 'switch'
-  | 'tag'
-  | string;
+  | 'tag';
 
 interface HBIconProps {
   style?: React.CSSProperties;

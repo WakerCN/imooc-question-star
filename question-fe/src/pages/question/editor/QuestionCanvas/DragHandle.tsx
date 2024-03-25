@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-22 16:04
- * @LastEditTime : 2024-03-22 17:54
+ * @LastEditTime : 2024-03-25 09:47
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -31,7 +31,7 @@ export const DragHandle: React.FC<DragHandleProps> = (props) => {
       }}
     >
       rate
-      <HBIcon iconKey="rate" />
+      <HBIcon iconKey="drag-handle" />
     </div>,
     document.body
   );

@@ -10,10 +10,8 @@ import { useAppDispatch } from '@/hooks/redux';
 import { questionSlice } from '@/stores/question';
 import { WidgetInfo } from '@/widgets';
 import { useSortable } from '@dnd-kit/sortable';
-import { useHover } from 'ahooks';
 import React, { useRef } from 'react';
 import { OverPoint } from '../OverPoint';
-import { DragHandle } from './DragHandle';
 import { WidgetBaseItem } from './WidgetBaseItem';
 import styles from './index.module.scss';
 
@@ -26,8 +24,6 @@ export const WidgetItem: React.FC<WidgetItemProps> = (props) => {
   const { fe_id } = info;
 
   const sortRef = useRef<HTMLDivElement | null>(null);
-
-  const isHover = useHover(sortRef);
 
   const { selectedId } = useGetQuestionDetail();
 
@@ -65,9 +61,6 @@ export const WidgetItem: React.FC<WidgetItemProps> = (props) => {
         isDragging={isDragging}
         isOvering={isOver}
       />
-      {isHover && (
-        <DragHandle hoverElement={sortRef.current!} isHover={isHover} />
-      )}
       {isOver && isOverSelf && <OverPoint className={styles['over-point']} />}
     </div>
   );

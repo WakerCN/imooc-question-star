@@ -169,7 +169,27 @@ export const questionSlice = createSlice({
         return;
       }
       draft.selectedId = visiableWidgetList[index + 1].fe_id;
-    })
+    }),
+    moveWidget: produce(
+      (
+        draft: QuestionEditorState,
+        action: PayloadAction<{ sourceId: string; targetId: string }>
+      ) => {
+        const { sourceId, targetId } = action.payload;
+        const sourceIndex = draft.widgetList.findIndex(
+          (w) => w.fe_id === sourceId
+        );
+        const targetIndex = draft.widgetList.findIndex(
+          (w) => w.fe_id === targetId
+        );
+        if (sourceIndex === -1 || targetIndex === -1) return;
+        draft.widgetList.splice(
+          targetIndex,
+          0,
+          ...draft.widgetList.splice(sourceIndex, 1)
+        );
+      }
+    )
   }
 });
 

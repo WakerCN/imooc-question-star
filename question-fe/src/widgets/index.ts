@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 16:32
- * @LastEditTime : 2024-03-15 10:21
+ * @LastEditTime : 2024-03-25 10:54
  * @LastEditors  : Waker
  * @Description  : widget 组件入口文件
  */
@@ -23,6 +23,7 @@ import { QuestionTitleProps } from './QuestionTitle/interface';
 import QuestionCheckBoxConfig from './QuestionCheckBox';
 import { QuestionRadioProps } from './QuestionRadio/interface';
 import { QuestionCheckBoxProps } from './QuestionCheckBox/interface';
+import { HBIconKey } from '@/components/HBIcon';
 
 export type WidgetType = 'title1' | 'title2' | 'title3' | 'input';
 
@@ -128,15 +129,13 @@ export const widgetConfigList: WidgetConfig[] = _.reduce(
 );
 
 /** 根据basetype 获取对应iconKey */
-export const getBaseTypeIconKey = (baseType: WidgetBaseType) => {
-  return (
-    {
-      title: 'baseType-title',
-      paragraph: 'lib-paragraph',
-      input: 'lib-input',
-      radio: 'lib-radio',
-      select: 'baseType-select',
-      checkbox: 'checkbox'
-    }?.[baseType] || 'baseType-title'
-  );
+export const getBaseTypeIconKey = (baseType: WidgetBaseType): HBIconKey => {
+  return ({
+    title: 'baseType-title',
+    paragraph: 'lib-paragraph',
+    input: 'lib-input',
+    radio: 'lib-radio',
+    select: 'baseType-select',
+    checkbox: 'checkbox'
+  }?.[baseType] || 'baseType-title') as HBIconKey;
 };

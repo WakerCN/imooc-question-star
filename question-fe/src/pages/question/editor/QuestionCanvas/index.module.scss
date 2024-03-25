@@ -62,11 +62,12 @@
   }
 
   &:global(.overlay) {
-    border-color: transparent;
+    border-color: #f4801a;
+    opacity: 0.7;
   }
 
   &:global(.over) {
-    opacity: 0.5;
+    opacity: 0.2;
   }
 
   &:global(.dragging) {
@@ -86,14 +87,4 @@
     position: absolute;
     bottom: -5px;
   }
-}
-
-.drag-handle-wrap {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  display: block;
-  background: pink;
-  z-index: 1;
-  transform: translateX();
 }
