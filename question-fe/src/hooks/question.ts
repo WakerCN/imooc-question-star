@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-02-27 16:24
- * @LastEditTime : 2024-03-11 15:05
+ * @LastEditTime : 2024-03-28 15:26
  * @LastEditors  : Waker
  * @Description  :
  */
@@ -15,6 +15,7 @@ import {
 import { useRequest } from 'ahooks';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './redux';
+import { ActionCreators } from 'redux-undo';
 
 export const useQuestionList = (params: ListParams = {}) => {
   const [searchParams] = useSearchParams();
@@ -57,6 +58,7 @@ export const useLoadQuestionDetail = () => {
       let selectedId = null;
       if (widgetList.length) selectedId = widgetList[0].fe_id;
       dispatch(setDetail({ ...editInitialState, ...result, selectedId }));
+      dispatch(ActionCreators.clearHistory());
     }
   });
   return { loading, error, data };
@@ -64,10 +66,12 @@ export const useLoadQuestionDetail = () => {
 
 /** 从redux中获取问卷详细信息 */
 export const useGetQuestionDetail = () => {
-  const details = useAppSelector((state) => state.question);
+  const details = useAppSelector((state) => state.question.present);
+  const past = useAppSelector((state) => state.question.past);
+  const future = useAppSelector((state) => state.question.future);
   const { selectedId, widgetList } = details;
 
   const selectComponent = widgetList.find((item) => item.fe_id === selectedId);
 
-  return { details, selectComponent, ...details };
+  return { details, past, future, selectComponent, ...details };
 };

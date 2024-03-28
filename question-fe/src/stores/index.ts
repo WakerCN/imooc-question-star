@@ -1,11 +1,33 @@
+/*
+ * @Author       : 魏威
+ * @Date         : 2024-03-06 10:57
+ * @LastEditTime : 2024-03-28 15:23
+ * @LastEditors  : Waker
+ * @Description  :
+ */
 import { configureStore } from '@reduxjs/toolkit';
-import { userSlice } from './user';
 import { questionSlice } from './question';
+import { userSlice } from './user';
+
+import undoable, { includeAction } from 'redux-undo';
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
-    question: questionSlice.reducer
+    question: undoable(questionSlice.reducer, {
+      limit: 50,
+      filter: includeAction([
+        'question/addWidget',
+        'question/addWidgetById',
+        'question/updateProps',
+        'question/deleteWidget',
+        'question/toggleWidgetVisiable',
+        'question/toggleWidgetLock',
+        'question/modifyWidgetTitle',
+        'question/pasteWidget',
+        'question/moveWidget'
+      ])
+    })
   }
 });
 

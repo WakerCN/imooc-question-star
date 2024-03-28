@@ -1,3 +1,10 @@
+/*
+ * @Author       : 魏威
+ * @Date         : 2024-03-06 16:45
+ * @LastEditTime : 2024-03-26 15:16
+ * @LastEditors  : Waker
+ * @Description  :
+ */
 import { useAppSelector } from '@/hooks/redux';
 import { Button, Flex, Typography } from 'antd';
 import React from 'react';
@@ -7,7 +14,7 @@ import styles from './index.module.scss';
 interface Props {}
 
 export const TopPane: React.FC<Props> = () => {
-  const detail = useAppSelector((state) => state.question);
+  const detail = useAppSelector((state) => state.question.present);
   const { title } = detail;
 
   return (

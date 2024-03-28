@@ -14,12 +14,14 @@ import {
 } from '@ant-design/icons';
 import { Divider, Flex } from 'antd';
 import React from 'react';
+import { ActionCreators } from 'redux-undo';
 import styles from './index.module.scss';
 
 interface Props {}
 
 export const EditorToolBar: React.FC<Props> = () => {
-  const { selectedId, selectComponent, copiedWidget } = useGetQuestionDetail();
+  const { future, past, selectedId, selectComponent, copiedWidget } =
+    useGetQuestionDetail();
   const dispatch = useAppDispatch();
   const {
     deleteWidget,
@@ -49,6 +51,14 @@ export const EditorToolBar: React.FC<Props> = () => {
 
   const handlePaste = () => {
     dispatch(pasteWidget());
+  };
+
+  const handleUndo = () => {
+    dispatch(ActionCreators.undo());
+  };
+
+  const handleRedo = () => {
+    dispatch(ActionCreators.redo());
   };
 
   return (
@@ -91,8 +101,18 @@ export const EditorToolBar: React.FC<Props> = () => {
         onClick={handlePaste}
       />
       <Divider className={styles['divider']} type="vertical" />
-      <CircleButton title="撤销" icon={<UndoOutlined />} />
-      <CircleButton title="重做" icon={<RedoOutlined />} />
+      <CircleButton
+        title="撤销"
+        icon={<UndoOutlined />}
+        onClick={handleUndo}
+        disabled={past.length === 0}
+      />
+      <CircleButton
+        title="重做"
+        icon={<RedoOutlined />}
+        onClick={handleRedo}
+        disabled={future.length === 0}
+      />
     </Flex>
   );
 };

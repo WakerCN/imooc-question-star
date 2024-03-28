@@ -18,7 +18,7 @@ module.exports = [
             {
               fe_id: Random.id(),
               baseType: "title",
-              title: "标题1",
+              title: "主标题",
               isHidden: false,
               isLocked: false,
               props: {
@@ -30,7 +30,7 @@ module.exports = [
             {
               fe_id: Random.id(),
               baseType: "paragraph",
-              title: "段落1",
+              title: "说明",
               isHidden: false,
               isLocked: false,
               props: {
@@ -41,7 +41,7 @@ module.exports = [
             {
               fe_id: Random.id(),
               baseType: "input",
-              title: "输入框1",
+              title: "姓名",
               isHidden: false,
               isLocked: false,
               props: {
@@ -52,7 +52,7 @@ module.exports = [
             {
               fe_id: Random.id(),
               baseType: "input",
-              title: "输入框2",
+              title: "电话",
               isHidden: false,
               isLocked: false,
               props: {
@@ -63,7 +63,7 @@ module.exports = [
             {
               fe_id: Random.id(),
               baseType: "radio",
-              title: "单选框1",
+              title: "性别",
               isHidden: false,
               isLocked: false,
               props: {
@@ -79,7 +79,7 @@ module.exports = [
             {
               fe_id: Random.id(),
               baseType: "checkbox",
-              title: "多选框1",
+              title: "技术栈",
               isHidden: false,
               isLocked: false,
               props: {

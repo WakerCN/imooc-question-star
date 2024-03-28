@@ -1,6 +1,6 @@
 {
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, .eslintrc.cjs, .eslintignore, .prettierrc, .prettierignore, commitlint.config.js, .editorconfig, .lintstagedrc, lint-staged.config.js, .gitignore"
+    "package.json": "package-lock.json, .eslintrc.cjs, .eslintignore, .prettierrc, .prettierignore, commitlint.config.js, .editorconfig, .lintstagedrc, lint-staged.config.js, .gitignore"
   }
 }

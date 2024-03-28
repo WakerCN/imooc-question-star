@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-12 16:45
- * @LastEditTime : 2024-03-25 14:35
+ * @LastEditTime : 2024-03-28 15:18
  * @LastEditors  : Waker
  * @Description  : 键盘快捷键
  */
@@ -10,6 +10,7 @@ import { questionSlice } from '@/stores/question';
 import { useKeyPress } from 'ahooks';
 import { useGetQuestionDetail } from './question';
 import { useAppDispatch } from './redux';
+import { ActionCreators } from 'redux-undo';
 
 export const isActiveVaild = () => {
   if (['TEXTAREA', 'INPUT'].includes(document.activeElement?.tagName || '')) {
@@ -85,4 +86,22 @@ export const useKeyboardShortcuts = () => {
     if (!isActiveVaild()) return;
     dispatch(selectNext());
   });
+
+  useKeyPress(
+    'ctrl.z',
+    () => {
+      if (!isActiveVaild()) return;
+      dispatch(ActionCreators.undo());
+    },
+    { exactMatch: true }
+  );
+
+  useKeyPress(
+    'ctrl.y',
+    () => {
+      if (!isActiveVaild()) return;
+      dispatch(ActionCreators.redo());
+    },
+    { exactMatch: true }
+  );
 };
