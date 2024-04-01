@@ -17,6 +17,10 @@
       "path": "./question-fe/src/pages/question/editor"
     },
     {
+      "name": "question-analysis",
+      "path": "./question-fe/src/pages/question/analysis"
+    },
+    {
       "name": "question-fe-widgets",
       "path": "./question-fe/src/widgets"
     },

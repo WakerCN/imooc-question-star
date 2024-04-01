@@ -117,8 +117,8 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
       }
     });
   };
-
   // =========== 删除 end =========== //
+
   const handleEdit = () => {
     naviagte(`/question/edit/${info._id}`);
   };
@@ -129,6 +129,10 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
     } else {
       naviagte(`${ROUTE_PATH.EDIT}${_id}`);
     }
+  };
+
+  const handleAnalysis = () => {
+    naviagte(`${ROUTE_PATH.ANALYSIS}${_id}`);
   };
 
   if (isDeleted) {
@@ -177,6 +181,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = (props) => {
               type="text"
               icon={<LineChartOutlined />}
               disabled={!isPublished}
+              onClick={handleAnalysis}
             >
               数据统计
             </Button>

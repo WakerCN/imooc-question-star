@@ -1,16 +1,28 @@
+/*
+ * @Author       : 魏威
+ * @Date         : 2024-02-05 13:55
+ * @LastEditTime : 2024-03-28 16:48
+ * @LastEditors  : Waker
+ * @Description  :
+ */
 import { useLoadUserInfo } from '@/hooks/user';
 import { TopPane } from '@/pages/question/editor/TopPane';
 import { RollbackOutlined } from '@ant-design/icons';
 import { Button, Spin } from 'antd';
 import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { ROUTE_PATH } from '@/routers';
+import { AnalysisHeader } from '@/pages/question/analysis/AnalysisHeader';
 
 interface Props {}
 
 export const QuestionLayout: React.FC<Props> = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const isEditor = pathname.includes(ROUTE_PATH.EDIT);
+  const isAnalysis = pathname.includes(ROUTE_PATH.ANALYSIS);
 
   const { waitUserInfo } = useLoadUserInfo();
 
@@ -25,7 +37,8 @@ export const QuestionLayout: React.FC<Props> = () => {
           <RollbackOutlined />
         </Button>
         <div className={styles['top-area']}>
-          <TopPane />
+          {isEditor && <TopPane />}
+          {isAnalysis && <AnalysisHeader />}
         </div>
       </header>
       <main className={styles['main']}>

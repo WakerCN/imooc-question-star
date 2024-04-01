@@ -6,10 +6,11 @@
  * @Description  :
  */
 import { configureStore } from '@reduxjs/toolkit';
+import undoable, { includeAction } from 'redux-undo';
+
+import { analysisSlice } from './analysis';
 import { questionSlice } from './question';
 import { userSlice } from './user';
-
-import undoable, { includeAction } from 'redux-undo';
 
 export const store = configureStore({
   reducer: {
@@ -27,7 +28,8 @@ export const store = configureStore({
         'question/pasteWidget',
         'question/moveWidget'
       ])
-    })
+    }),
+    analysis: analysisSlice.reducer
   }
 });
 

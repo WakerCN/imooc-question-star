@@ -9,7 +9,7 @@ import { MyQuestions } from '@/pages/manager/MyQuestions';
 import { RecycleBin } from '@/pages/manager/RecycleBin';
 import { StarQuestions } from '@/pages/manager/StarQuestions';
 import { QuestionEditor } from '@/pages/question/editor';
-import { QuestionAnalysis } from '@/pages/question/QuestionAnalysis';
+import { QuestionAnalysis } from '@/pages/question/analysis/QuestionAnalysis';
 import { TreeTools } from '@/utils/tree';
 import _ from 'lodash';
 import { createRef } from 'react';
