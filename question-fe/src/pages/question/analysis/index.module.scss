@@ -4,17 +4,24 @@
   display: flex;
   padding: 20px;
   align-items: center;
+  overflow: hidden;
 
   > * {
     height: 100%;
     overflow-y: auto;
   }
 
-  .canvas {
+  .canvas-area {
     width: 430px;
-    height: 90%;
-    background: white;
-    padding: 10px;
-    overflow-y: auto;
+    height: 100%;
+    @include flex-center();
+
+    .canvas {
+      width: 430px;
+      height: 90%;
+      background: white;
+      padding: 10px;
+      overflow-y: auto;
+    }
   }
 }

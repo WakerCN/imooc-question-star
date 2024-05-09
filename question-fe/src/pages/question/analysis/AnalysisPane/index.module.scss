@@ -1,0 +1,14 @@
+.analysis-pane {
+  width: 400px;
+  margin-left: 20px;
+  background: palegoldenrod;
+  @include base-card();
+  @include transition(0.7s);
+
+  &:global(.hidden) {
+    opacity: 0;
+    width: 0px;
+    padding: 0px;
+    margin-left: 0px;
+  }
+}

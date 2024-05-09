@@ -39,7 +39,7 @@ module.exports = [
               }
             },
             {
-              fe_id: Random.id(),
+              fe_id: 'qid-name',
               baseType: "input",
               title: "姓名",
               isHidden: false,
@@ -50,7 +50,7 @@ module.exports = [
               }
             },
             {
-              fe_id: Random.id(),
+              fe_id: 'qid-tel',
               baseType: "input",
               title: "电话",
               isHidden: false,
@@ -61,7 +61,7 @@ module.exports = [
               }
             },
             {
-              fe_id: Random.id(),
+              fe_id: 'qid-gender',
               baseType: "radio",
               title: "性别",
               isHidden: false,
@@ -77,7 +77,7 @@ module.exports = [
               }
             },
             {
-              fe_id: Random.id(),
+              fe_id: 'qid-technology',
               baseType: "checkbox",
               title: "技术栈",
               isHidden: false,

@@ -32,8 +32,8 @@
   backdrop-filter: blur(10px);
 }
 
-@mixin transition {
-  transition: all 0.3s ease;
+@mixin transition($delay: 0.3s) {
+  transition: all $delay ease;
 }
 
 @mixin ellipsis {
@@ -52,18 +52,21 @@
   transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+@mixin base-card {
+  padding: 20px;
+  border-radius: 20px;
+  @include box-shadow();
+  @include forsted-glass();
+}
+
 @mixin main-card {
   width: 100%;
   height: 100%;
 
-  padding: 20px;
-  border-radius: 20px;
-
   display: flex;
   flex-direction: column;
 
-  @include box-shadow();
-  @include forsted-glass();
+  @include base-card();
 }
 
 .router-wrap {
