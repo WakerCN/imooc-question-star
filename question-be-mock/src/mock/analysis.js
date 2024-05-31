@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-29 16:58
- * @LastEditTime : 2024-04-15 10:56
+ * @LastEditTime : 2024-05-27 15:59
  * @LastEditors  : starone
  * @Description  :
  */
@@ -37,6 +37,20 @@ module.exports = [
         data: {
           total: 100,
           list: genQuestionDetailList(100)
+        },
+        msg: "成功"
+      };
+    }
+  },
+  {
+    url: "/api/question/analysis/details/:id",
+    method: "get",
+    response(ctx) {
+      const id = ctx.params.id;
+      return {
+        errno: 0,
+        data: {
+          id
         },
         msg: "成功"
       };

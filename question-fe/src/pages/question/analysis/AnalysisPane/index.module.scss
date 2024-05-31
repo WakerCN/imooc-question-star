@@ -11,4 +11,26 @@
     padding: 0px;
     margin-left: 0px;
   }
+
+  .title {
+    margin-bottom: 10px;
+    @include flex-center(space-between);
+
+    .pane-name {
+      margin: 0;
+    }
+
+    .close-btn {
+      background: var(--ant-button-text-hover-bg);
+    }
+  }
+
+  .loading {
+    margin-top: 40px;
+  }
+
+  .content {
+    width: 100%;
+    height: 400px;
+  }
 }
