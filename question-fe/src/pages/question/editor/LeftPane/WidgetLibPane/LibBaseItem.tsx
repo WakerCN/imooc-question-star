@@ -1,15 +1,15 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-22 13:52
- * @LastEditTime : 2024-03-22 13:59
+ * @LastEditTime : 2024-06-26 09:34
  * @LastEditors  : Waker
  * @Description  :
  */
 import { HBIcon } from '@/components/HBIcon';
-import React from 'react';
-import cs from 'classnames';
-import styles from './index.module.scss';
 import { WidgetConfig } from '@/widgets';
+import cs from 'classnames';
+import React from 'react';
+import styles from './index.module.scss';
 
 interface LibBaseItemProps {
   info: WidgetConfig;

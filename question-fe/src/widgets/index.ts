@@ -1,7 +1,7 @@
 /*
  * @Author       : 魏威
  * @Date         : 2024-03-07 16:32
- * @LastEditTime : 2024-03-25 10:54
+ * @LastEditTime : 2024-06-26 09:35
  * @LastEditors  : Waker
  * @Description  : widget 组件入口文件
  */
@@ -55,7 +55,7 @@ export interface WidgetConfig {
   /** 组件中文名 */
   name: string;
   baseType: WidgetBaseType;
-  iconKey: string;
+  iconKey: HBIconKey;
   Component: FC<WidgetProps>;
   AttributeConfig: FC<{
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
